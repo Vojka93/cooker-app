@@ -1,4 +1,11 @@
+import { data } from './data'
+import { useState } from 'react'
+
 function App() {
+  const [categories, setCategories] = useState(data)
+
+  console.log(categories)
+
   return (
     <div className='app'>
       <div className='wrapper'>
