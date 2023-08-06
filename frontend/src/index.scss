@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: 100vh;
+}
+
+.left {
+  display: grid;
+  grid-template-columns: 1.2fr 4fr 4fr;
+
+  .left-item {
+    border-right: 1px solid rgb(139, 139, 139);
+  }
+}
