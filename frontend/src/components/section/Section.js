@@ -4,10 +4,10 @@ import './Section.scss'
 
 export default function Section({
   name,
-  selectedCategory,
-  setSelectedCategory,
-  handleUpdateCategory,
-  handleDeleteCategory,
+  selected,
+  setSelected,
+  handleUpdate,
+  handleDelete,
 }) {
   const [inputText, setInputText] = useState(name)
   const [disabled, setDisabled] = useState(true)
@@ -21,7 +21,7 @@ export default function Section({
   })
 
   const handleSelect = (e) => {
-    setSelectedCategory(e.target.value)
+    setSelected(e.target.value)
   }
 
   const handleClickOutside = (e) => {
@@ -32,7 +32,7 @@ export default function Section({
 
   const handleInputTextChange = (e) => {
     setInputText(e.target.value)
-    setSelectedCategory(e.target.value)
+    setSelected(e.target.value)
   }
 
   const handleEdit = () => {
@@ -40,31 +40,27 @@ export default function Section({
 
     setTimeout(() => {
       inputRef.current.focus()
-      setSelectedCategory(inputText)
+      setSelected(inputText)
     }, 0)
   }
 
   const handleSave = () => {
     setDisabled(true)
-    handleUpdateCategory(name, inputText)
+    handleUpdate(name, inputText)
     setTimeout(() => {
-      setSelectedCategory(inputText)
+      setSelected(inputText)
     }, 0)
   }
 
-  const handleDelete = () => {
-    handleDeleteCategory(name)
+  const handleDeleteSection = () => {
+    handleDelete(name)
   }
 
   return (
-    <div
-      className='section'
-      ref={sectionRef}
-      onClick={handleSelect}
-    >
+    <div className='section' ref={sectionRef} onClick={handleSelect}>
       <div className='section-input'>
         <input
-          className={inputText === selectedCategory ? 'selected' : ''}
+          className={inputText === selected ? 'selected' : ''}
           type='text'
           value={inputText}
           onChange={handleInputTextChange}
@@ -74,7 +70,7 @@ export default function Section({
       </div>
       {disabled && <button onClick={handleEdit}>edit</button>}
       {!disabled && <button onClick={handleSave}>save</button>}
-      <button onClick={handleDelete}>
+      <button onClick={handleDeleteSection}>
         <VscTrash />
       </button>
     </div>

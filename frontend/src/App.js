@@ -94,8 +94,6 @@ function App() {
     setRecipes(recipes.filter((obj) => obj.name !== name))
   }
 
-  console.log(recipes)
-
   return (
     <div className='app'>
       <div className='wrapper'>
@@ -106,10 +104,10 @@ function App() {
               <Section
                 key={category.name}
                 name={category.name}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                handleUpdateCategory={handleUpdateCategory}
-                handleDeleteCategory={handleDeleteCategory}
+                selected={selectedCategory}
+                setSelected={setSelectedCategory}
+                handleUpdate={handleUpdateCategory}
+                handleDelete={handleDeleteCategory}
               />
             ))}
           </div>
@@ -118,10 +116,10 @@ function App() {
               <Section
                 key={recipe.name}
                 name={recipe.name}
-                selectedCategory={selectedRecipe}
-                setSelectedCategory={setSelectedRecipe}
-                handleUpdateCategory={handleUpdateRecipe}
-                handleDeleteCategory={handleDeleteRecipe}
+                selected={selectedRecipe}
+                setSelected={setSelectedRecipe}
+                handleUpdate={handleUpdateRecipe}
+                handleDelete={handleDeleteRecipe}
               />
             ))}
           </div>
