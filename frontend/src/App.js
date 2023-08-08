@@ -1,4 +1,5 @@
 import CreateSection from './components/create_section/CreateSection'
+import Modal from './components/modal/Modal'
 import Section from './components/section/Section'
 import { data } from './data/data'
 import { useEffect, useState } from 'react'
@@ -201,6 +202,7 @@ function App() {
             <pre>{JSON.stringify(recipe, null, 2)}</pre>
           </div>
         </div>
+        <Modal />
       </div>
     </div>
   )
