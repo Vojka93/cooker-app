@@ -1,6 +1,8 @@
+import CreateSection from './components/create_section/CreateSection'
 import Section from './components/section/Section'
 import { data } from './data/data'
 import { useEffect, useState } from 'react'
+import { VscNewFolder, VscNewFile } from 'react-icons/vsc'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -162,6 +164,8 @@ function App() {
                 setPreviousName={setPreviousCategoryName}
               />
             ))}
+
+            <CreateSection icon={<VscNewFolder />} />
           </div>
           <div className='left-item recipes'>
             {recipes?.map((recipe) => (
@@ -175,6 +179,8 @@ function App() {
                 setPreviousName={setPreviousRecipeName}
               />
             ))}
+
+            <CreateSection icon={<VscNewFile />} />
           </div>
         </div>
         <div className='right' style={{ display: 'flex' }}>
