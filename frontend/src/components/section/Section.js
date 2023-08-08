@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { VscTrash } from 'react-icons/vsc'
-import './Section.scss'
+import { VscTrash, VscEdit, VscSave } from 'react-icons/vsc'
+import './section.scss'
 
 export default function Section({
   name,
@@ -8,6 +8,7 @@ export default function Section({
   setSelected,
   handleUpdate,
   handleDelete,
+  setPreviousName,
 }) {
   const [inputText, setInputText] = useState(name)
   const [disabled, setDisabled] = useState(true)
@@ -38,6 +39,7 @@ export default function Section({
   const handleEdit = () => {
     setDisabled(false)
 
+    setPreviousName(name)
     setTimeout(() => {
       inputRef.current.focus()
       setSelected(inputText)
@@ -68,8 +70,16 @@ export default function Section({
           ref={inputRef}
         />
       </div>
-      {disabled && <button onClick={handleEdit}>edit</button>}
-      {!disabled && <button onClick={handleSave}>save</button>}
+      {disabled && (
+        <button onClick={handleEdit}>
+          <VscEdit />
+        </button>
+      )}
+      {!disabled && (
+        <button onClick={handleSave}>
+          <VscSave />
+        </button>
+      )}
       <button onClick={handleDeleteSection}>
         <VscTrash />
       </button>

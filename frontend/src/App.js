@@ -2,49 +2,84 @@ import Section from './components/section/Section'
 import { data } from './data/data'
 import { useEffect, useState } from 'react'
 
+const createHistoryArray = (arr) => {
+  let history = []
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i]
+
+    history[i] = {
+      categoryName: element.name,
+      recipeName: element.recipes[0].name,
+    }
+  }
+
+  return history
+}
+
 function App() {
   const [categories, setCategories] = useState(data)
   const [category, setCategory] = useState({})
   const [recipes, setRecipes] = useState(categories[0]?.recipes)
   const [recipe, setRecipe] = useState({})
+
+  // category name before edit
+  const [previousCategoryName, setPreviousCategoryName] = useState('')
+  const [previousRecipeName, setPreviousRecipeName] = useState('')
+
   // selected category state
   const [selectedCategory, setSelectedCategory] = useState('Meat')
   const [selectedRecipe, setSelectedRecipe] = useState('Steak')
 
+  // remmember category last recipe selected
+  const [historyArray, setHistoryArray] = useState(() =>
+    createHistoryArray(data)
+  )
+
   useEffect(() => {
-    setSelectedCategory((prev) => prev)
-    setSelectedRecipe(categories[0].recipes[0].name)
-  }, [categories])
+    const newRecipeState = category?.recipes?.filter(
+      (recipe) => recipe.name === selectedRecipe
+    )
+
+    setRecipe(newRecipeState)
+  }, [recipes])
 
   useEffect(() => {
     setRecipes(category?.recipes)
   }, [category])
 
   useEffect(() => {
-    const category = categories.filter(
+    const newCategoryState = categories.filter(
       (category) => category.name === selectedCategory
-    )
+    )[0]
 
-    setCategory(category[0])
-    setSelectedRecipe(category[0]?.recipes[0].name)
+    const lastRecipeName = historyArray?.filter(
+      (obj) => obj.categoryName === selectedCategory
+    )[0]?.recipeName
+
+    setCategory(newCategoryState)
+
+    setSelectedRecipe(lastRecipeName)
   }, [selectedCategory])
 
   useEffect(() => {
-    const newRecipe = recipes?.filter(
+    const newRecipeState = recipes?.filter(
       (recipe) => recipe.name === selectedRecipe
     )
 
-    setRecipe(newRecipe)
+    const newHistoryState = historyArray.map((obj) => {
+      if (obj.categoryName === selectedCategory) {
+        return { ...obj, recipeName: selectedRecipe }
+      }
+
+      return obj
+    })
+
+    setRecipe(newRecipeState)
+    setHistoryArray(newHistoryState)
   }, [selectedRecipe])
 
-  useEffect(() => {
-    if (recipes) {
-      setRecipe(recipes[0])
-    }
-  }, [recipes])
-
   const handleUpdateCategory = (currentName, newName) => {
-    const newState = categories.map((obj) => {
+    const newCategoriesState = categories.map((obj) => {
       if (obj.name === currentName) {
         return { ...obj, name: newName }
       }
@@ -52,11 +87,20 @@ function App() {
       return obj
     })
 
-    setCategories(newState)
+    const newHistoryState = historyArray.map((obj) => {
+      if (obj.categoryName === previousCategoryName) {
+        return { ...obj, categoryName: selectedCategory }
+      }
+
+      return obj
+    })
+
+    setCategories(newCategoriesState)
+    setHistoryArray(newHistoryState)
   }
 
   const handleUpdateRecipe = (currentName, newName) => {
-    const newRecipes = category.recipes.map((obj) => {
+    const newRecipesState = category.recipes.map((obj) => {
       if (obj.name === currentName) {
         return { ...obj, name: newName }
       }
@@ -64,25 +108,30 @@ function App() {
       return obj
     })
 
-    const newState = categories.map((obj) => {
+    const newCategoriesState = categories.map((obj) => {
       if (obj.name === selectedCategory) {
-        return { ...obj, recipes: newRecipes }
+        return { ...obj, recipes: newRecipesState }
       }
 
       return obj
     })
 
-    setCategories(newState)
+    setRecipes(newRecipesState)
+    setCategories(newCategoriesState)
   }
 
   const handleDeleteCategory = (name) => {
-    const newState = categories.filter((obj) => obj.name !== name)
+    const newCategoriesState = categories.filter((obj) => obj.name !== name)
+    const newLastSelectedState = historyArray.filter(
+      (obj) => obj.categoryName !== selectedCategory
+    )
 
-    setCategories(newState)
+    setCategories(newCategoriesState)
+    setHistoryArray(newLastSelectedState)
   }
 
   const handleDeleteRecipe = (name) => {
-    const newState = categories.map((obj) => {
+    const newCategoriesState = categories.map((obj) => {
       if (obj.name === selectedCategory) {
         return { ...obj, recipes: recipes.filter((obj) => obj.name !== name) }
       }
@@ -90,8 +139,10 @@ function App() {
       return obj
     })
 
-    setCategories(newState)
-    setRecipes(recipes.filter((obj) => obj.name !== name))
+    const newRecipesState = recipes.filter((obj) => obj.name !== name)
+
+    setCategories(newCategoriesState)
+    setRecipes(newRecipesState)
   }
 
   return (
@@ -108,6 +159,7 @@ function App() {
                 setSelected={setSelectedCategory}
                 handleUpdate={handleUpdateCategory}
                 handleDelete={handleDeleteCategory}
+                setPreviousName={setPreviousCategoryName}
               />
             ))}
           </div>
@@ -120,6 +172,7 @@ function App() {
                 setSelected={setSelectedRecipe}
                 handleUpdate={handleUpdateRecipe}
                 handleDelete={handleDeleteRecipe}
+                setPreviousName={setPreviousRecipeName}
               />
             ))}
           </div>
