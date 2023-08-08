@@ -6,9 +6,9 @@ export const data = [
       {
         name: 'Chicken Breast',
         cookingTime: 30,
-        difficulty: 'Intermediate ',
+        difficulty: 'Intermediate',
       },
-      { name: 'Frog Legs', cookingTime: 60, difficulty: 'Expert ' },
+      { name: 'Frog Legs', cookingTime: 60, difficulty: 'Expert' },
     ],
   },
   {
@@ -18,9 +18,9 @@ export const data = [
       {
         name: 'Salmon',
         cookingTime: 30,
-        difficulty: 'Intermediate ',
+        difficulty: 'Intermediate',
       },
-      { name: 'Tuna', cookingTime: 60, difficulty: 'Beginner ' },
+      { name: 'Tuna', cookingTime: 60, difficulty: 'Beginner' },
     ],
   },
   {
@@ -30,9 +30,9 @@ export const data = [
       {
         name: 'Green Salad',
         cookingTime: 30,
-        difficulty: 'Intermediate ',
+        difficulty: 'Intermediate',
       },
-      { name: 'Chickpeas Salad', cookingTime: 60, difficulty: 'Beginner ' },
+      { name: 'Chickpeas Salad', cookingTime: 60, difficulty: 'Beginner' },
     ],
   },
   {
@@ -42,9 +42,9 @@ export const data = [
       {
         name: 'Plazma Cake',
         cookingTime: 30,
-        difficulty: 'Intermediate ',
+        difficulty: 'Intermediate',
       },
-      { name: 'Tiramisù', cookingTime: 60, difficulty: 'Beginner ' },
+      { name: 'Tiramisù', cookingTime: 60, difficulty: 'Beginner' },
     ],
   },
 ]

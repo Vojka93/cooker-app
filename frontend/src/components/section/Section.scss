@@ -1,0 +1,25 @@
+.section {
+  display: flex;
+
+  .section-input {
+    input {
+      height: 2rem;
+      width: 100%;
+      border: none;
+
+      &.selected {
+        background-color: rgb(255, 241, 83);
+      }
+
+      &:focus {
+        outline: none;
+        cursor: text;
+      }
+    }
+
+    :hover {
+      cursor: pointer;
+      background-color: rgb(255, 248, 171);
+    }
+  }
+}
