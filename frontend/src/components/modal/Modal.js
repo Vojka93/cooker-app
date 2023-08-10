@@ -1,24 +1,120 @@
+import { useEffect, useRef } from 'react'
 import './modal.scss'
+import { VscChromeClose } from 'react-icons/vsc'
 
-export default function Modal() {
+const capitalizeFirstLetter = (word) => {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
+export default function Modal({
+  modal,
+  setModal,
+  categories,
+  setCategories,
+  selectedCategory,
+  setRecipes,
+  setSelectedCategory,
+  setSelectedRecipe,
+  historyArray,
+  setHistoryArray,
+  category,
+  setCategory,
+}) {
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    setModal({ ...modal, input: '' })
+    console.log(inputRef.current)
+    inputRef.current.focus()
+  }, [])
+
+  const handleAdd = () => {
+    if (modal.input.length === 0) {
+      alert("Input field can't be empty")
+      inputRef.current.focus()
+      return
+    }
+
+    if (inputRef.current.name === 'add-category') {
+      const capitalizedInput = capitalizeFirstLetter(modal.input)
+
+      setCategories([...categories, { name: capitalizedInput, recipes: [] }])
+      setSelectedCategory(capitalizedInput)
+      setHistoryArray([
+        ...historyArray,
+        { categoryName: capitalizedInput, recipeName: '' },
+      ])
+      setModal({ ...modal, isOpen: false })
+    }
+
+    if (inputRef.current.name === 'add-recipe') {
+      const capitalizedInput = capitalizeFirstLetter(modal.input)
+
+      const newCategoriesState = categories.map((obj) => {
+        if (obj.name === selectedCategory) {
+          return {
+            ...obj,
+            recipes: [
+              ...obj.recipes,
+              {
+                name: capitalizedInput,
+                cookingTime: null,
+                difficulty: '',
+              },
+            ],
+          }
+        }
+        return obj
+      })
+
+      const newRecipesState = newCategoriesState.filter(
+        (obj) => obj.name === selectedCategory
+      )[0].recipes
+
+      const newHistoryArray = historyArray.map((obj) => {
+        if (obj.categoryName === selectedCategory) {
+          return { ...obj, recipeName: capitalizedInput }
+        }
+
+        return obj
+      })
+
+      setCategories(newCategoriesState)
+      setCategory({ ...category, recipes: [...category.recipes, newRecipesState[0]] })
+      setRecipes(newRecipesState)
+      setSelectedRecipe(capitalizedInput)
+      setHistoryArray(newHistoryArray)
+      setModal({ ...modal, isOpen: false })
+    }
+  }
+
   return (
     <div className='modal-wrapper'>
       <div className='modal'>
         <div className='modal-header'>
-          <div className='modal-title'>Modal Title</div>
-          <button>X</button>
-        </div>
-        <hr />
-        <div className='modal-body'>
-          <div className='modal-text'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Reprehenderit!
+          <div className='modal-title'>
+            <h5>{modal.title}</h5>
           </div>
+          <button onClick={() => setModal({ ...modal, isOpen: false })}>
+            <VscChromeClose />
+          </button>
         </div>
-        <hr />
+
+        <div className='modal-body'>
+          <input
+            name={modal.name}
+            type='text'
+            ref={inputRef}
+            value={modal.input}
+            onChange={(e) => setModal({ ...modal, input: e.target.value })}
+          />
+        </div>
 
         <div className='modal-footer'>
-          <button>Close</button>
+          <button onClick={() => setModal({ ...modal, isOpen: false })}>
+            Close
+          </button>
+          <button onClick={handleAdd}>Add</button>
         </div>
       </div>
     </div>

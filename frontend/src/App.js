@@ -1,9 +1,8 @@
-import CreateSection from './components/create_section/CreateSection'
 import Modal from './components/modal/Modal'
 import Section from './components/section/Section'
 import { data } from './data/data'
 import { useEffect, useState } from 'react'
-import { VscNewFolder, VscNewFile } from 'react-icons/vsc'
+import { VscAdd } from 'react-icons/vsc'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -24,6 +23,14 @@ function App() {
   const [category, setCategory] = useState({})
   const [recipes, setRecipes] = useState(categories[0]?.recipes)
   const [recipe, setRecipe] = useState({})
+
+  // modal
+  const [modal, setModal] = useState({
+    isOpen: false,
+    name: '',
+    title: '',
+    input: '',
+  })
 
   // category name before edit
   const [previousCategoryName, setPreviousCategoryName] = useState('')
@@ -166,7 +173,20 @@ function App() {
               />
             ))}
 
-            <CreateSection icon={<VscNewFolder />} />
+            <div className='add-section'>
+              <button
+                onClick={() =>
+                  setModal({
+                    ...modal,
+                    isOpen: true,
+                    name: 'add-category',
+                    title: 'Add Category',
+                  })
+                }
+              >
+                <VscAdd /> Add Catrgory
+              </button>
+            </div>
           </div>
           <div className='left-item recipes'>
             {recipes?.map((recipe) => (
@@ -181,7 +201,20 @@ function App() {
               />
             ))}
 
-            <CreateSection icon={<VscNewFile />} />
+            <div className='add-section'>
+              <button
+                onClick={() =>
+                  setModal({
+                    ...modal,
+                    isOpen: true,
+                    name: 'add-recipe',
+                    title: 'Add Recipe',
+                  })
+                }
+              >
+                <VscAdd /> Add Recipe
+              </button>
+            </div>
           </div>
         </div>
         <div className='right' style={{ display: 'flex' }}>
@@ -202,7 +235,23 @@ function App() {
             <pre>{JSON.stringify(recipe, null, 2)}</pre>
           </div>
         </div>
-        <Modal />
+        {modal.isOpen && (
+          <Modal
+            modal={modal}
+            setModal={setModal}
+            categories={categories}
+            setCategories={setCategories}
+            selectedCategory={selectedCategory}
+            recipes={recipes}
+            setRecipes={setRecipes}
+            setSelectedCategory={setSelectedCategory}
+            setSelectedRecipe={setSelectedRecipe}
+            historyArray={historyArray}
+            setHistoryArray={setHistoryArray}
+            category={category}
+            setCategory={setCategory}
+          />
+        )}
       </div>
     </div>
   )

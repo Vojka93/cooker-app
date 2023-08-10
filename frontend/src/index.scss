@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .wrapper {
@@ -17,5 +18,18 @@
 
   .left-item {
     border-right: 1px solid rgb(0, 0, 0);
+  }
+}
+
+.add-section {
+  button {
+    padding: 8px;
+    width: 100%;
+    border: none;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 }
