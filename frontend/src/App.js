@@ -46,6 +46,11 @@ function App() {
   )
 
   useEffect(() => {
+    const newCategoryState = { ...category, recipes }
+    setCategory(newCategoryState)
+  }, [categories])
+
+  useEffect(() => {
     const newRecipeState = category?.recipes?.filter(
       (recipe) => recipe.name === selectedRecipe
     )

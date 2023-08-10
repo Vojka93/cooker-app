@@ -24,11 +24,12 @@ export default function Modal({
 
   useEffect(() => {
     setModal({ ...modal, input: '' })
-    console.log(inputRef.current)
     inputRef.current.focus()
   }, [])
 
   const handleAdd = () => {
+    const capitalizedInput = capitalizeFirstLetter(modal.input)
+
     if (modal.input.length === 0) {
       alert("Input field can't be empty")
       inputRef.current.focus()
@@ -36,8 +37,6 @@ export default function Modal({
     }
 
     if (inputRef.current.name === 'add-category') {
-      const capitalizedInput = capitalizeFirstLetter(modal.input)
-
       setCategories([...categories, { name: capitalizedInput, recipes: [] }])
       setSelectedCategory(capitalizedInput)
       setHistoryArray([
@@ -48,8 +47,6 @@ export default function Modal({
     }
 
     if (inputRef.current.name === 'add-recipe') {
-      const capitalizedInput = capitalizeFirstLetter(modal.input)
-
       const newCategoriesState = categories.map((obj) => {
         if (obj.name === selectedCategory) {
           return {
@@ -79,9 +76,14 @@ export default function Modal({
         return obj
       })
 
-      setCategories(newCategoriesState)
-      setCategory({ ...category, recipes: [...category.recipes, newRecipesState[0]] })
       setRecipes(newRecipesState)
+      setCategories(newCategoriesState)
+
+      setCategory({
+        ...category,
+        recipes: newRecipesState,
+      })
+
       setSelectedRecipe(capitalizedInput)
       setHistoryArray(newHistoryArray)
       setModal({ ...modal, isOpen: false })
