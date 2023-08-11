@@ -1,5 +1,5 @@
 @mixin unbuttonize {
-  // removes default css for button
+  cursor: pointer;
   background-color: transparent;
   border: none;
   margin: 0;

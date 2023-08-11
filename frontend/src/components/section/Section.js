@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { VscTrash, VscEdit, VscSave } from 'react-icons/vsc'
+import { VscTrash, VscEdit, VscSave, VscFolder } from 'react-icons/vsc'
 import './section.scss'
 
 export default function Section({
@@ -59,7 +59,7 @@ export default function Section({
   }
 
   return (
-    <div className='section' ref={sectionRef} onClick={handleSelect}>
+    <div className={inputText === selected ? 'section selected' : 'section'} ref={sectionRef} onClick={handleSelect}>
       <div className='section-input'>
         <input
           className={inputText === selected ? 'selected' : ''}
@@ -71,16 +71,25 @@ export default function Section({
         />
       </div>
       {disabled && (
-        <button onClick={handleEdit}>
+        <button
+          className={inputText === selected ? 'selected' : ''}
+          onClick={handleEdit}
+        >
           <VscEdit />
         </button>
       )}
       {!disabled && (
-        <button onClick={handleSave}>
+        <button
+          className={inputText === selected ? 'selected' : ''}
+          onClick={handleSave}
+        >
           <VscSave />
         </button>
       )}
-      <button onClick={handleDeleteSection}>
+      <button
+        className={inputText === selected ? 'selected' : ''}
+        onClick={handleDeleteSection}
+      >
         <VscTrash />
       </button>
     </div>

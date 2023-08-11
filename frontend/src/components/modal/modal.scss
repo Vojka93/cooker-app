@@ -39,7 +39,14 @@
       padding: 1rem;
 
       button {
+        @include unbuttonize;
         padding: 4px;
+        border: 1px solid black;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: rgba(128, 128, 128, 0.154);
+        }
       }
     }
   }
