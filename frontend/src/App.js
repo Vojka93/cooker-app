@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
+import { data } from './data/data'
+// components
 import Modal from './components/modal/Modal'
 import Section from './components/section/Section'
-import { data } from './data/data'
-import { useEffect, useState } from 'react'
+// style
 import { VscAdd } from 'react-icons/vsc'
 
 const createHistoryArray = (arr) => {

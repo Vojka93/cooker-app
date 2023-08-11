@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+// style
 import './modal.scss'
 import { VscChromeClose } from 'react-icons/vsc'
 
@@ -111,6 +112,16 @@ export default function Modal({
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleAdd()
+    }
+
+    if (e.keyCode === 27) {
+      setModal({ ...modal, isOpen: false })
+    }
+  }
+
   return (
     <div className='modal-wrapper'>
       <div className='modal'>
@@ -130,6 +141,7 @@ export default function Modal({
             ref={inputRef}
             value={modal.input}
             onChange={(e) => setModal({ ...modal, input: e.target.value })}
+            onKeyDown={handleKeyDown}
           />
         </div>
 
