@@ -12,6 +12,7 @@ export default function Modal({
   categories,
   setCategories,
   selectedCategory,
+  recipes,
   setRecipes,
   setSelectedCategory,
   setSelectedRecipe,
@@ -37,56 +38,76 @@ export default function Modal({
     }
 
     if (inputRef.current.name === 'add-category') {
-      setCategories([...categories, { name: capitalizedInput, recipes: [] }])
-      setSelectedCategory(capitalizedInput)
-      setHistoryArray([
-        ...historyArray,
-        { categoryName: capitalizedInput, recipeName: '' },
-      ])
-      setModal({ ...modal, isOpen: false })
+      const doesCategoryExist = categories.find(
+        (category) => category.name === capitalizedInput
+      )
+
+      if (doesCategoryExist !== undefined) {
+        alert('Category alredy exists')
+        inputRef.current.focus()
+        return
+      } else {
+        setCategories([...categories, { name: capitalizedInput, recipes: [] }])
+        setSelectedCategory(capitalizedInput)
+        setHistoryArray([
+          ...historyArray,
+          { categoryName: capitalizedInput, recipeName: '' },
+        ])
+        setModal({ ...modal, isOpen: false })
+      }
     }
 
     if (inputRef.current.name === 'add-recipe') {
-      const newCategoriesState = categories.map((obj) => {
-        if (obj.name === selectedCategory) {
-          return {
-            ...obj,
-            recipes: [
-              ...obj.recipes,
-              {
-                name: capitalizedInput,
-                cookingTime: null,
-                difficulty: '',
-              },
-            ],
+      const doesRecipeExist = recipes.find(
+        (recipe) => recipe.name === capitalizedInput
+      )
+
+      if (doesRecipeExist !== undefined) {
+        alert('Recipe alredy exists')
+        inputRef.current.focus()
+        return
+      } else {
+        const newCategoriesState = categories.map((obj) => {
+          if (obj.name === selectedCategory) {
+            return {
+              ...obj,
+              recipes: [
+                ...obj.recipes,
+                {
+                  name: capitalizedInput,
+                  cookingTime: null,
+                  difficulty: '',
+                },
+              ],
+            }
           }
-        }
-        return obj
-      })
+          return obj
+        })
 
-      const newRecipesState = newCategoriesState.filter(
-        (obj) => obj.name === selectedCategory
-      )[0].recipes
+        const newRecipesState = newCategoriesState.filter(
+          (obj) => obj.name === selectedCategory
+        )[0].recipes
 
-      const newHistoryArray = historyArray.map((obj) => {
-        if (obj.categoryName === selectedCategory) {
-          return { ...obj, recipeName: capitalizedInput }
-        }
+        const newHistoryArray = historyArray.map((obj) => {
+          if (obj.categoryName === selectedCategory) {
+            return { ...obj, recipeName: capitalizedInput }
+          }
 
-        return obj
-      })
+          return obj
+        })
 
-      setRecipes(newRecipesState)
-      setCategories(newCategoriesState)
+        setRecipes(newRecipesState)
+        setCategories(newCategoriesState)
 
-      setCategory({
-        ...category,
-        recipes: newRecipesState,
-      })
+        setCategory({
+          ...category,
+          recipes: newRecipesState,
+        })
 
-      setSelectedRecipe(capitalizedInput)
-      setHistoryArray(newHistoryArray)
-      setModal({ ...modal, isOpen: false })
+        setSelectedRecipe(capitalizedInput)
+        setHistoryArray(newHistoryArray)
+        setModal({ ...modal, isOpen: false })
+      }
     }
   }
 
