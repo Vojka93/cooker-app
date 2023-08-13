@@ -4,7 +4,9 @@ import { data } from './data/data'
 import Modal from './components/modal/Modal'
 import Section from './components/section/Section'
 // style
-import { VscAdd } from 'react-icons/vsc'
+import { VscAdd, VscFolder } from 'react-icons/vsc'
+import Menu from './components/menu/Menu'
+import Search from './components/search/Search'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -25,6 +27,9 @@ function App() {
   const [category, setCategory] = useState({})
   const [recipes, setRecipes] = useState(categories[0]?.recipes)
   const [recipe, setRecipe] = useState({})
+
+  // menu
+  const [menuItemSelected, setMenuItemSelected] = useState('Library')
 
   // modal
   const [modal, setModal] = useState({
@@ -166,63 +171,80 @@ function App() {
     <div className='app'>
       <div className='wrapper'>
         <div className='left'>
-          <div className='left-item menu'>menu</div>
-          <div className='left-item categories'>
-            {categories.map((category) => (
-              <Section
-                key={category.name}
-                name={category.name}
-                selected={selectedCategory}
-                setSelected={setSelectedCategory}
-                handleUpdate={handleUpdateCategory}
-                handleDelete={handleDeleteCategory}
-                setPreviousName={setPreviousCategoryName}
-              />
-            ))}
+          <Menu
+            itemSelected={menuItemSelected}
+            setItemSelected={setMenuItemSelected}
+          />
+          {menuItemSelected === 'Library' && (
+            <div className='library'>
+              <div className='left-item categories'>
+                {categories.map((category) => (
+                  <Section
+                    key={category.name}
+                    name={category.name}
+                    selected={selectedCategory}
+                    setSelected={setSelectedCategory}
+                    handleUpdate={handleUpdateCategory}
+                    handleDelete={handleDeleteCategory}
+                    setPreviousName={setPreviousCategoryName}
+                    icon={<VscFolder />}
+                  />
+                ))}
 
-            <div className='add-section'>
-              <button
-                onClick={() =>
-                  setModal({
-                    ...modal,
-                    isOpen: true,
-                    name: 'add-category',
-                    title: 'Add Category',
-                  })
-                }
-              >
-                <VscAdd /> Add Catrgory
-              </button>
-            </div>
-          </div>
-          <div className='left-item recipes'>
-            {recipes?.map((recipe) => (
-              <Section
-                key={recipe.name}
-                name={recipe.name}
-                selected={selectedRecipe}
-                setSelected={setSelectedRecipe}
-                handleUpdate={handleUpdateRecipe}
-                handleDelete={handleDeleteRecipe}
-                setPreviousName={setPreviousRecipeName}
-              />
-            ))}
+                <div className='add-section'>
+                  <button
+                    onClick={() =>
+                      setModal({
+                        ...modal,
+                        isOpen: true,
+                        name: 'add-category',
+                        title: 'Add Category',
+                      })
+                    }
+                  >
+                    <VscAdd /> Add Catrgory
+                  </button>
+                </div>
+              </div>
+              <div className='left-item recipes'>
+                {recipes?.map((recipe) => (
+                  <Section
+                    key={recipe.name}
+                    name={recipe.name}
+                    selected={selectedRecipe}
+                    setSelected={setSelectedRecipe}
+                    handleUpdate={handleUpdateRecipe}
+                    handleDelete={handleDeleteRecipe}
+                    setPreviousName={setPreviousRecipeName}
+                  />
+                ))}
 
-            <div className='add-section'>
-              <button
-                onClick={() =>
-                  setModal({
-                    ...modal,
-                    isOpen: true,
-                    name: 'add-recipe',
-                    title: 'Add Recipe',
-                  })
-                }
-              >
-                <VscAdd /> Add Recipe
-              </button>
+                <div className='add-section'>
+                  <button
+                    onClick={() =>
+                      setModal({
+                        ...modal,
+                        isOpen: true,
+                        name: 'add-recipe',
+                        title: 'Add Recipe',
+                      })
+                    }
+                  >
+                    <VscAdd /> Add Recipe
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
+
+          {menuItemSelected === 'Search' && (
+            <Search
+              categories={categories}
+              setMenuItemSelected={setMenuItemSelected}
+              setSelectedCategory={setSelectedCategory}
+              setSelectedRecipe={setSelectedRecipe}
+            />
+          )}
         </div>
         <div className='right' style={{ display: 'flex' }}>
           <div>

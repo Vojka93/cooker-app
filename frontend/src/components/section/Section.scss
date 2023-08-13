@@ -2,10 +2,15 @@
 
 .section {
   display: flex;
+  height: 36px;
+  align-items: center;
+  border-left: 1.6px solid transparent;
+  padding-left: 6px;
 
   .section-input {
     input {
-      padding-left: 4px;
+      height: 36px !important;
+      padding-left: 6px;
       height: 2rem;
       width: 100%;
       border: none;
@@ -15,10 +20,6 @@
         outline: none;
         cursor: text;
       }
-    }
-
-    :hover {
-      cursor: pointer;
     }
   }
   &:hover {

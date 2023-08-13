@@ -1,0 +1,46 @@
+.search {
+  border-right: 1px solid rgb(0, 0, 0);
+
+  .input-container {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      width: 90%;
+      padding: 1px 4px;
+    }
+  }
+
+  .filtered {
+    .filtered-item {
+      height: 36px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+
+      .left {
+        width: 36px;
+        display: flex;
+        justify-content: center;
+
+        svg {
+          font-size: 1rem;
+        }
+      }
+
+      .right {
+        .right-subtitle {
+          font-size: 10px;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.09);
+        cursor: default;
+      }
+    }
+  }
+}

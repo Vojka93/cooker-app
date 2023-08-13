@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { VscTrash, VscEdit, VscSave, VscFolder } from 'react-icons/vsc'
+import { VscTrash, VscEdit, VscSave } from 'react-icons/vsc'
 import './section.scss'
 
 export default function Section({
@@ -9,9 +9,11 @@ export default function Section({
   handleUpdate,
   handleDelete,
   setPreviousName,
+  icon,
 }) {
   const [inputText, setInputText] = useState(name)
   const [disabled, setDisabled] = useState(true)
+  const [isShown, setIsShown] = useState(false)
   const sectionRef = useRef(null)
   const inputRef = useRef(null)
 
@@ -22,7 +24,8 @@ export default function Section({
   })
 
   const handleSelect = (e) => {
-    setSelected(e.target.value)
+
+    setSelected(e.target.closest('.section').getAttribute('value'))
   }
 
   const handleClickOutside = (e) => {
@@ -58,11 +61,27 @@ export default function Section({
     handleDelete(name)
   }
 
+  const handleMouseOver = () => {
+    setIsShown(true)
+  }
+
+  const handleMouseOut = () => {
+    setIsShown(false)
+  }
+
   return (
-    <div className={inputText === selected ? 'section selected' : 'section'} ref={sectionRef} onClick={handleSelect}>
+    <div
+      className={inputText === selected ? 'section selected' : 'section'}
+      ref={sectionRef}
+      onClick={handleSelect}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      value={inputText}
+    >
+      <div>{icon}</div>
       <div className='section-input'>
         <input
-          className={inputText === selected ? 'selected' : ''}
+          // className={inputText === selected ? 'selected' : ''}
           type='text'
           value={inputText}
           onChange={handleInputTextChange}
@@ -70,7 +89,7 @@ export default function Section({
           ref={inputRef}
         />
       </div>
-      {disabled && (
+      {disabled && isShown && (
         <button
           className={inputText === selected ? 'selected' : ''}
           onClick={handleEdit}
@@ -78,7 +97,7 @@ export default function Section({
           <VscEdit />
         </button>
       )}
-      {!disabled && (
+      {!disabled && isShown && (
         <button
           className={inputText === selected ? 'selected' : ''}
           onClick={handleSave}
@@ -86,12 +105,14 @@ export default function Section({
           <VscSave />
         </button>
       )}
-      <button
-        className={inputText === selected ? 'selected' : ''}
-        onClick={handleDeleteSection}
-      >
-        <VscTrash />
-      </button>
+      {isShown && (
+        <button
+          className={inputText === selected ? 'selected' : ''}
+          onClick={handleDeleteSection}
+        >
+          <VscTrash />
+        </button>
+      )}
     </div>
   )
 }

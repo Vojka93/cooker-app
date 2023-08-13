@@ -1,0 +1,25 @@
+.menu {
+  border-right: 1px solid rgb(0, 0, 0);
+  nav {
+    ul {
+      li {
+        text-align: center;
+        color: black;
+        height: 36px;
+
+        &.selected {
+          background-color: rgba(0, 0, 0, 0.09);
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.09);
+        }
+
+        svg {
+          font-size: 1rem;
+          height: 32px;
+        }
+      }
+    }
+  }
+}

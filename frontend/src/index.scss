@@ -14,10 +14,19 @@
 
 .left {
   display: grid;
-  grid-template-columns: 1.2fr 4fr 4fr;
+  grid-template-columns: 1.2fr 8fr;
 
   .left-item {
     border-right: 1px solid rgb(0, 0, 0);
+  }
+
+  .library {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &.selected {
+      background-color: red;
+    }
   }
 }
 
@@ -26,7 +35,6 @@
     padding: 8px;
     width: 100%;
     border: none;
-    cursor: pointer;
 
     svg {
       display: inline-block;
