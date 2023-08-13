@@ -1,6 +1,14 @@
 .search {
   border-right: 1px solid rgb(0, 0, 0);
 
+  .message {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    // justify-content: center;
+  }
+
   .input-container {
     height: 36px;
     display: flex;
@@ -9,7 +17,7 @@
 
     input {
       width: 90%;
-      padding: 1px 4px;
+      padding: 1px 8px;
     }
   }
 

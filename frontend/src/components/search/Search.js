@@ -8,9 +8,9 @@ export default function Search({
   setSelectedCategory,
   setSelectedRecipe,
 }) {
+  const [input, setInput] = useState('')
   const [filtered, setFiltered] = useState([])
   const inputRef = useRef(null)
-  const itemRef = useRef(null)
 
   useEffect(() => {
     inputRef.current.focus()
@@ -18,7 +18,9 @@ export default function Search({
 
   const handleSearch = (e) => {
     let input = e.target.value
+    setInput(input)
     setFiltered([])
+    console.log(inputRef.current.value)
 
     if (input.length >= 3) {
       const filteredCategories = categories.filter((obj) =>
@@ -62,11 +64,26 @@ export default function Search({
     }
   }
 
+  console.log(filtered.length)
+
   return (
     <div className='search'>
+      {input.length < 3 ? (
+        <div className='message'>
+          Please enter at least 3 chars to search...
+        </div>
+      ) : (
+        <div className='message'>Results for: {input}</div>
+      )}
       <div className='input-container'>
-        <input type='text' ref={inputRef} onChange={handleSearch} />
+        <input
+          type='text'
+          ref={inputRef}
+          onChange={handleSearch}
+          placeholder='🔍 Search Categories or Recipes'
+        />
       </div>
+
       <div className='filtered'>
         {filtered &&
           filtered.map((element) => (
@@ -107,6 +124,10 @@ export default function Search({
             </div>
           ))}
       </div>
+
+      {input.length > 2 && filtered.length === 0 && (
+        <div className='message'>No results found</div>
+      )}
     </div>
   )
 }
