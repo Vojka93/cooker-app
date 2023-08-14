@@ -80,7 +80,7 @@ export default function Search({
           type='text'
           ref={inputRef}
           onChange={handleSearch}
-          placeholder='🔍 Search Categories or Recipes'
+          placeholder='🔍 Search for Categories or Recipes'
         />
       </div>
 
