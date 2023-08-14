@@ -1,3 +1,6 @@
+@import './style/variables.scss';
+@import './style/mixins.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +18,7 @@
 .left {
   display: grid;
   grid-template-columns: 1.2fr 8fr;
+  color: $textColor;
 
   .left-item {
     border-right: 1px solid rgb(0, 0, 0);
@@ -23,18 +27,19 @@
   .library {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
-    &.selected {
-      background-color: red;
-    }
+    background-color: $tertiary;
   }
+}
+
+.right {
+  background-color: $primary;
+  color: $textColor;
 }
 
 .add-section {
   button {
-    padding: 8px;
-    width: 100%;
-    border: none;
+    @include unbuttonize;
+    @include button;
 
     svg {
       display: inline-block;

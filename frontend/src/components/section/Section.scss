@@ -1,3 +1,4 @@
+@import './../../style/variables.scss';
 @import './../../style/mixins.scss';
 
 .section {
@@ -6,6 +7,14 @@
   align-items: center;
   border-left: 1.6px solid transparent;
   padding-left: 6px;
+  padding-right: 6px;
+
+  .section-icon {
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 
   .section-input {
     input {
@@ -15,6 +24,7 @@
       width: 100%;
       border: none;
       background-color: transparent;
+      color: $textColor;
 
       &:focus {
         outline: none;
@@ -23,22 +33,30 @@
     }
   }
   &:hover {
-    background-color: rgb(255, 248, 171);
+    background-color: $hover;
   }
 
   &.selected {
-    background-color: rgb(255, 241, 83);
-    border-left: 1.6px solid black;
+    background-color: $selected;
+    border-left: 2px solid #ecc140;
   }
 
-  button {
-    @include unbuttonize;
+  .section-buttons {
 
-    svg {
-      color: #565656;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
 
-      &:hover {
-        color: black;
+    button {
+      @include unbuttonize;
+
+      svg {
+        color: $textColor;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

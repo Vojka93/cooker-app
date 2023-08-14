@@ -24,7 +24,6 @@ export default function Section({
   })
 
   const handleSelect = (e) => {
-
     setSelected(e.target.closest('.section').getAttribute('value'))
   }
 
@@ -78,10 +77,9 @@ export default function Section({
       onMouseOut={handleMouseOut}
       value={inputText}
     >
-      <div>{icon}</div>
+      <div className='section-icon'>{icon}</div>
       <div className='section-input'>
         <input
-          // className={inputText === selected ? 'selected' : ''}
           type='text'
           value={inputText}
           onChange={handleInputTextChange}
@@ -89,30 +87,32 @@ export default function Section({
           ref={inputRef}
         />
       </div>
-      {disabled && isShown && (
-        <button
-          className={inputText === selected ? 'selected' : ''}
-          onClick={handleEdit}
-        >
-          <VscEdit />
-        </button>
-      )}
-      {!disabled && isShown && (
-        <button
-          className={inputText === selected ? 'selected' : ''}
-          onClick={handleSave}
-        >
-          <VscSave />
-        </button>
-      )}
-      {isShown && (
-        <button
-          className={inputText === selected ? 'selected' : ''}
-          onClick={handleDeleteSection}
-        >
-          <VscTrash />
-        </button>
-      )}
+      <div className='section-buttons'>
+        {disabled && isShown && (
+          <button
+            className={inputText === selected ? 'selected' : ''}
+            onClick={handleEdit}
+          >
+            <VscEdit />
+          </button>
+        )}
+        {!disabled && isShown && (
+          <button
+            className={inputText === selected ? 'selected' : ''}
+            onClick={handleSave}
+          >
+            <VscSave />
+          </button>
+        )}
+        {isShown && (
+          <button
+            className={inputText === selected ? 'selected' : ''}
+            onClick={handleDeleteSection}
+          >
+            <VscTrash />
+          </button>
+        )}
+      </div>
     </div>
   )
 }

@@ -1,5 +1,8 @@
+@import './../../style/variables.scss';
+
 .search {
   border-right: 1px solid rgb(0, 0, 0);
+  background-color: $tertiary;
 
   .message {
     height: 36px;
@@ -29,7 +32,7 @@
       align-items: center;
       z-index: 1000;
 
-      .left {
+      .filtered-item-left {
         width: 36px;
         display: flex;
         justify-content: center;
@@ -39,14 +42,14 @@
         }
       }
 
-      .right {
+      .filtered-item-right {
         .right-subtitle {
           font-size: 10px;
         }
       }
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.09);
+        background-color: $hover;
         cursor: default;
       }
     }

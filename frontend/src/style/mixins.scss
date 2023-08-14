@@ -8,3 +8,15 @@
   border-radius: 0;
   appearance: none;
 }
+
+@mixin button {
+  padding: 8px;
+  width: 100%;
+  background-color: $primary;
+  color: $textColor;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -97,10 +97,10 @@ export default function Search({
             >
               {!element.category && (
                 <>
-                  <div className='left'>
+                  <div className='filtered-item-left'>
                     <VscFolder />
                   </div>
-                  <div className='right'>
+                  <div className='filtered-item-right'>
                     <div className='right-title'>{element.name}</div>
                     <div className='right-subtitle'>
                       Library &gt;&gt; {element.name}
@@ -110,10 +110,10 @@ export default function Search({
               )}
               {element.category && (
                 <>
-                  <div className='left'>
+                  <div className='filtered-item-left'>
                     <VscFile />
                   </div>
-                  <div className='right'>
+                  <div className='filtered-item-right'>
                     <div className='right-title'>{element.name}</div>
                     <div className='right-subtitle'>
                       {element.category} &gt;&gt; {element.name}
