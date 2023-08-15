@@ -6,10 +6,11 @@
   height: 36px;
   align-items: center;
   border-left: 1.6px solid transparent;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 0 8px;
 
   .section-icon {
+    padding-right: 8px;
+
     svg {
       display: inline-block;
       vertical-align: middle;
@@ -18,13 +19,10 @@
 
   .section-input {
     input {
-      height: 36px !important;
-      padding-left: 6px;
-      height: 2rem;
+      height: 36px;
       width: 100%;
       border: none;
       background-color: transparent;
-      color: $textColor;
 
       &:focus {
         outline: none;
@@ -32,27 +30,28 @@
       }
     }
   }
+
   &:hover {
     background-color: $hover;
   }
 
   &.selected {
     background-color: $selected;
-    border-left: 2px solid #ecc140;
+    border-left: 1.6px solid #f2be22;
   }
 
   .section-buttons {
-
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 4px;
 
     button {
-      @include unbuttonize;
+      height: 36px;
 
       svg {
-        color: $textColor;
+        display: inline-block;
+        vertical-align: middle;
 
         &:hover {
           cursor: pointer;

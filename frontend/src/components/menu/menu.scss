@@ -1,14 +1,13 @@
 @import './../../style/variables.scss';
 
 .menu {
-  background-color: $quaternary;
+  background-color: $bg-quaternary;
   border-right: 1px solid rgb(0, 0, 0);
 
   nav {
     ul {
       li {
         text-align: center;
-        color: $textColor;
         height: 36px;
 
         &.selected {
@@ -21,7 +20,7 @@
 
         svg {
           font-size: 1rem;
-          height: 32px;
+          height: 36px;
         }
       }
     }

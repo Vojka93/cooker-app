@@ -6,6 +6,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Ubuntu', sans-serif;
+  color: $text-primary;
+}
+
+button {
+  @include unbuttonize;
 }
 
 .wrapper {
@@ -18,7 +23,6 @@
 .left {
   display: grid;
   grid-template-columns: 1.2fr 8fr;
-  color: $textColor;
 
   .left-item {
     border-right: 1px solid rgb(0, 0, 0);
@@ -27,18 +31,16 @@
   .library {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: $tertiary;
+    background-color: $bg-tertiary;
   }
 }
 
 .right {
-  background-color: $primary;
-  color: $textColor;
+  background-color: $bg-primary;
 }
 
 .add-section {
   button {
-    @include unbuttonize;
     @include button;
 
     svg {

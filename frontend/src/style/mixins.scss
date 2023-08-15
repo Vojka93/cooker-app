@@ -10,13 +10,21 @@
 }
 
 @mixin button {
+  height: 36px;
   padding: 8px;
   width: 100%;
-  background-color: $primary;
-  color: $textColor;
+  background-color: $bg-primary;
+  color: $text-primary;
   text-align: center;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+@mixin input {
+  color: $text-secondary;
+  height: 36px;
+  padding: 1rem;
+  margin: 0 1rem;
 }

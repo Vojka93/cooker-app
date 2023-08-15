@@ -1,9 +1,14 @@
-// theme colors
-$primary: #404258;
-$secondary: #474e68;
-$tertiary: #50577a;
-$quaternary: #6b728e;
+// background colors
+$bg-primary: #404258;
+$bg-secondary: #474e68;
+$bg-tertiary: #50577a;
+$bg-quaternary: #6b728e;
+$bg-success: #22a699;
 
-$textColor: #eaeaea;
+// text colors
+$text-primary: #eaeaea;
+$text-secondary: invert($text-primary);
+
+// effects colors
 $selected: rgb(0, 0, 0, 0.35);
 $hover: rgb(0, 0, 0, 0.1);

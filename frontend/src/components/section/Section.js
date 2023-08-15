@@ -43,6 +43,8 @@ export default function Section({
 
     setPreviousName(name)
     setTimeout(() => {
+      const end = inputRef.current.value.length
+      inputRef.current.setSelectionRange(end, end)
       inputRef.current.focus()
       setSelected(inputText)
     }, 0)
@@ -77,7 +79,7 @@ export default function Section({
       onMouseOut={handleMouseOut}
       value={inputText}
     >
-      <div className='section-icon'>{icon}</div>
+      {icon && <div className='section-icon'>{icon}</div>}
       <div className='section-input'>
         <input
           type='text'

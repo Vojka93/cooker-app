@@ -1,48 +1,36 @@
 @import './../../style/variables.scss';
+@import './../../style/mixins.scss';
 
 .search {
   border-right: 1px solid rgb(0, 0, 0);
-  background-color: $tertiary;
+  background-color: $bg-tertiary;
 
   .message {
     height: 36px;
-    display: flex;
-    align-items: center;
-    padding-left: 16px;
-    // justify-content: center;
+    padding: 0.5rem;
   }
 
   .input-container {
-    height: 36px;
     display: flex;
-    align-items: center;
-    justify-content: center;
 
     input {
-      width: 90%;
-      padding: 1px 8px;
+      @include input;
+      width: 100%;
     }
   }
 
   .filtered {
+    margin: 0.5rem 0;
+
     .filtered-item {
-      height: 36px;
-      margin: auto;
       display: flex;
       align-items: center;
-      z-index: 1000;
-
-      .filtered-item-left {
-        width: 36px;
-        display: flex;
-        justify-content: center;
-
-        svg {
-          font-size: 1rem;
-        }
-      }
+      height: 36px;
+      padding: 0.5rem;
 
       .filtered-item-right {
+        padding-left: 8px;
+
         .right-subtitle {
           font-size: 10px;
         }
