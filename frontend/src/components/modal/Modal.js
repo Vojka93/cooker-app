@@ -7,6 +7,19 @@ const capitalizeFirstLetter = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1)
 }
 
+const folderColors = [
+  '#fb2576',
+  '#38e54d',
+  '#d09cfa',
+  '#39b5e0',
+  '#eaeaea',
+  '#FBF46D',
+]
+
+const randomizeColor = (arr) => {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
 export default function Modal({
   modal,
   setModal,
@@ -48,7 +61,14 @@ export default function Modal({
         inputRef.current.focus()
         return
       } else {
-        setCategories([...categories, { name: capitalizedInput, recipes: [] }])
+        setCategories([
+          ...categories,
+          {
+            name: capitalizedInput,
+            color: randomizeColor(folderColors),
+            recipes: [],
+          },
+        ])
         setSelectedCategory(capitalizedInput)
         setHistoryArray([
           ...historyArray,

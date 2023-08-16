@@ -6,7 +6,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Ubuntu', sans-serif;
-  color: $text-primary;
 }
 
 button {
@@ -23,6 +22,7 @@ button {
 .left {
   display: grid;
   grid-template-columns: 1.2fr 8fr;
+  color: $text-primary;
 
   .left-item {
     border-right: 1px solid rgb(0, 0, 0);
@@ -37,6 +37,7 @@ button {
 
 .right {
   background-color: $bg-primary;
+  color: $text-primary;
 }
 
 .add-section {

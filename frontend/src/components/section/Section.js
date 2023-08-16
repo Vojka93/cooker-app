@@ -10,6 +10,7 @@ export default function Section({
   handleDelete,
   setPreviousName,
   icon,
+  color,
 }) {
   const [inputText, setInputText] = useState(name)
   const [disabled, setDisabled] = useState(true)
@@ -79,7 +80,11 @@ export default function Section({
       onMouseOut={handleMouseOut}
       value={inputText}
     >
-      {icon && <div className='section-icon'>{icon}</div>}
+      {icon && (
+        <div className='section-icon' style={{ color: color }}>
+          {icon}
+        </div>
+      )}
       <div className='section-input'>
         <input
           type='text'

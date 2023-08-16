@@ -1,6 +1,7 @@
 export const data = [
   {
     name: 'Meat',
+    color: '#fb2576',
     recipes: [
       { name: 'Steak', cookingTime: 20, difficulty: 'Beginner' },
       {
@@ -13,6 +14,7 @@ export const data = [
   },
   {
     name: 'Fish',
+    color: '#38e54d',
     recipes: [
       { name: 'Fish Soup', cookingTime: 20, difficulty: 'Beginner' },
       {
@@ -25,6 +27,7 @@ export const data = [
   },
   {
     name: 'Salad',
+    color: '#d09cfa',
     recipes: [
       { name: 'Greec Salad', cookingTime: 20, difficulty: 'Beginner' },
       {
@@ -37,6 +40,7 @@ export const data = [
   },
   {
     name: 'Cake',
+    color: '#39b5e0',
     recipes: [
       { name: 'Reforma', cookingTime: 20, difficulty: 'Advanced' },
       {

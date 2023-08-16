@@ -191,6 +191,7 @@ function App() {
                     handleDelete={handleDeleteCategory}
                     setPreviousName={setPreviousCategoryName}
                     icon={<VscFolder />}
+                    color={category.color}
                   />
                 ))}
 
