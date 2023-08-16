@@ -20,7 +20,6 @@ export default function Search({
     let input = e.target.value
     setInput(input)
     setFiltered([])
-    console.log(inputRef.current.value)
 
     if (input.length >= 3) {
       const filteredCategories = categories.filter((obj) =>
@@ -64,8 +63,6 @@ export default function Search({
     }
   }
 
-  console.log(filtered.length)
-
   return (
     <div className='search'>
       {input.length < 3 ? (
@@ -97,7 +94,10 @@ export default function Search({
             >
               {!element.category && (
                 <>
-                  <div className='filtered-item-left'>
+                  <div
+                    className='filtered-item-left'
+                    style={{ color: element.color }}
+                  >
                     <VscFolder />
                   </div>
                   <div className='filtered-item-right'>

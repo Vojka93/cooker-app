@@ -71,6 +71,12 @@ export default function Section({
     setIsShown(false)
   }
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleSave()
+    }
+  }
+
   return (
     <div
       className={inputText === selected ? 'section selected' : 'section'}
@@ -92,6 +98,7 @@ export default function Section({
           onChange={handleInputTextChange}
           disabled={disabled}
           ref={inputRef}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <div className='section-buttons'>
