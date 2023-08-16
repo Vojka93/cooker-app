@@ -53,20 +53,24 @@ function App() {
   )
 
   useEffect(() => {
-    const newCategoryState = { ...category, recipes }
-    setCategory(newCategoryState)
+    setCategory(categories.filter((x) => x.name === selectedCategory)[0])
+
+    setTimeout(() => {
+      setSelectedRecipe(
+        historyArray?.filter((x) => x.categoryName === selectedCategory)[0]
+          ?.recipeName
+      )
+    }, 0)
+
+    setSelectedRecipe('Reforma')
   }, [categories])
 
   useEffect(() => {
-    const newRecipeState = category?.recipes?.filter(
-      (recipe) => recipe.name === selectedRecipe
-    )
-
-    setRecipe(newRecipeState)
-  }, [recipes])
-
-  useEffect(() => {
     setRecipes(category?.recipes)
+
+    setTimeout(() => {
+      setRecipe(category?.recipes?.filter((x) => x.name === selectedRecipe)[0])
+    }, 0)
   }, [category])
 
   useEffect(() => {
@@ -79,14 +83,13 @@ function App() {
     )[0]?.recipeName
 
     setCategory(newCategoryState)
-
     setSelectedRecipe(lastRecipeName)
   }, [selectedCategory])
 
   useEffect(() => {
     const newRecipeState = recipes?.filter(
       (recipe) => recipe.name === selectedRecipe
-    )
+    )[0]
 
     const newHistoryState = historyArray.map((obj) => {
       if (obj.categoryName === selectedCategory) {
