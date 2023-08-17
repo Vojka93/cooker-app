@@ -1,5 +1,5 @@
 import './menu.scss'
-import { VscSearch } from 'react-icons/vsc'
+import { VscSearch, VscColorMode } from 'react-icons/vsc'
 import { BiFoodMenu } from 'react-icons/bi'
 
 export default function Menu({ itemSelected, setItemSelected }) {
@@ -18,6 +18,12 @@ export default function Menu({ itemSelected, setItemSelected }) {
             onClick={() => setItemSelected('Search')}
           >
             <VscSearch />
+          </li>
+          <li
+            className='color'
+            onClick={() => console.log('hi')}
+          >
+            <VscColorMode />
           </li>
         </ul>
       </nav>
