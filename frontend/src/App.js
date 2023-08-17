@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { data } from './data/data'
 // components
-import Modal from './components/modal/Modal'
+import Modal from './components/modal/AddModal'
 import Section from './components/section/Section'
 // style
 import { VscAdd, VscFolder } from 'react-icons/vsc'
 import Menu from './components/menu/Menu'
 import Search from './components/search/Search'
 import EditModal from './components/modal/EditModal'
+import DeleteModal from './components/modal/DeleteModal'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -32,8 +33,8 @@ function App() {
   // menu
   const [menuItemSelected, setMenuItemSelected] = useState('Library')
 
-  // modal
-  const [modal, setModal] = useState({
+  // add modal
+  const [addModal, setAddModal] = useState({
     isOpen: false,
     name: '',
     title: '',
@@ -42,6 +43,14 @@ function App() {
 
   // edit modal
   const [editModal, setEditModal] = useState({
+    isOpen: false,
+    name: '',
+    title: '',
+    input: '',
+  })
+
+  // delete modal
+  const [deleteModal, setDeleteModal] = useState({
     isOpen: false,
     name: '',
     title: '',
@@ -199,20 +208,19 @@ function App() {
                     name={category.name}
                     selected={selectedCategory}
                     setSelected={setSelectedCategory}
-                    handleUpdate={handleUpdateCategory}
-                    handleDelete={handleDeleteCategory}
                     icon={<VscFolder />}
                     color={category.color}
-                    setModal={setModal}
+                    editModal={editModal}
                     setEditModal={setEditModal}
+                    setDeleteModal={setDeleteModal}
                   />
                 ))}
 
                 <div className='add-section'>
                   <button
                     onClick={() =>
-                      setModal({
-                        ...modal,
+                      setAddModal({
+                        ...addModal,
                         isOpen: true,
                         name: 'add-category',
                         title: 'Add Category',
@@ -230,18 +238,17 @@ function App() {
                     name={recipe.name}
                     selected={selectedRecipe}
                     setSelected={setSelectedRecipe}
-                    handleUpdate={handleUpdateRecipe}
-                    handleDelete={handleDeleteRecipe}
-                    setModal={setModal}
+                    editModal={editModal}
                     setEditModal={setEditModal}
+                    setDeleteModal={setDeleteModal}
                   />
                 ))}
 
                 <div className='add-section'>
                   <button
                     onClick={() =>
-                      setModal({
-                        ...modal,
+                      setAddModal({
+                        ...addModal,
                         isOpen: true,
                         name: 'add-recipe',
                         title: 'Add Recipe',
@@ -282,10 +289,10 @@ function App() {
             <pre>{JSON.stringify(recipe, null, 2)}</pre>
           </div>
         </div>
-        {modal.isOpen && (
+        {addModal.isOpen && (
           <Modal
-            modal={modal}
-            setModal={setModal}
+            addModal={addModal}
+            setAddModal={setAddModal}
             categories={categories}
             setCategories={setCategories}
             selectedCategory={selectedCategory}
@@ -311,6 +318,17 @@ function App() {
             setSelectedRecipe={setSelectedRecipe}
             handleUpdateRecipe={handleUpdateRecipe}
             category={category}
+          />
+        )}
+
+        {deleteModal.isOpen && (
+          <DeleteModal
+            deleteModal={deleteModal}
+            setDeleteModal={setDeleteModal}
+            selectedCategory={selectedCategory}
+            selectedRecipe={selectedRecipe}
+            handleDeleteCategory={handleDeleteCategory}
+            handleDeleteRecipe={handleDeleteRecipe}
           />
         )}
       </div>

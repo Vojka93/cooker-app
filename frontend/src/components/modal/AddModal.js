@@ -12,9 +12,9 @@ const randomizeColor = (arr) => {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-export default function Modal({
-  modal,
-  setModal,
+export default function AddModal({
+  addModal,
+  setAddModal,
   categories,
   setCategories,
   selectedCategory,
@@ -30,14 +30,14 @@ export default function Modal({
   const inputRef = useRef(null)
 
   useEffect(() => {
-    setModal({ ...modal, input: '' })
+    setAddModal({ ...addModal, input: '' })
     inputRef.current.focus()
   }, [])
 
   const handleAdd = () => {
-    const capitalizedInput = capitalizeFirstLetter(modal.input)
+    const capitalizedInput = capitalizeFirstLetter(addModal.input)
 
-    if (modal.input.length === 0) {
+    if (addModal.input.length === 0) {
       alert("Input field can't be empty")
       inputRef.current.focus()
       return
@@ -66,7 +66,7 @@ export default function Modal({
           ...historyArray,
           { categoryName: capitalizedInput, recipeName: '' },
         ])
-        setModal({ ...modal, isOpen: false })
+        setAddModal({ ...addModal, isOpen: false })
       }
     }
 
@@ -119,7 +119,7 @@ export default function Modal({
 
         setSelectedRecipe(capitalizedInput)
         setHistoryArray(newHistoryArray)
-        setModal({ ...modal, isOpen: false })
+        setAddModal({ ...addModal, isOpen: false })
       }
     }
   }
@@ -130,7 +130,7 @@ export default function Modal({
     }
 
     if (e.keyCode === 27) {
-      setModal({ ...modal, isOpen: false })
+      setAddModal({ ...addModal, isOpen: false })
     }
   }
 
@@ -139,26 +139,26 @@ export default function Modal({
       <div className='modal'>
         <div className='modal-header'>
           <div className='modal-title'>
-            <h5>{modal.title}</h5>
+            <h5>{addModal.title}</h5>
           </div>
-          <button onClick={() => setModal({ ...modal, isOpen: false })}>
+          <button onClick={() => setAddModal({ ...addModal, isOpen: false })}>
             <VscChromeClose />
           </button>
         </div>
 
         <div className='modal-body'>
           <input
-            name={modal.name}
+            name={addModal.name}
             type='text'
             ref={inputRef}
-            value={modal.input}
-            onChange={(e) => setModal({ ...modal, input: e.target.value })}
+            value={addModal.input}
+            onChange={(e) => setAddModal({ ...addModal, input: e.target.value })}
             onKeyDown={handleKeyDown}
           />
         </div>
 
         <div className='modal-footer'>
-          <button onClick={() => setModal({ ...modal, isOpen: false })}>
+          <button onClick={() => setAddModal({ ...addModal, isOpen: false })}>
             Close
           </button>
           <button onClick={handleAdd}>Add</button>

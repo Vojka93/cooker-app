@@ -18,6 +18,11 @@
       @include input;
       width: 100%;
     }
+
+    ::placeholder {
+      color: $text-primary;
+      opacity: 1;
+    }
   }
 
   .filtered {

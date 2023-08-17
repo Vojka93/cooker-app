@@ -13,7 +13,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $bg-tertiary;
-    border-radius: 8px;
 
     .modal-header {
       display: flex;
@@ -40,6 +39,14 @@
     .modal-body {
       input {
         @include input;
+      }
+
+      .message {
+        @include input;
+        background-color: #6b728e;
+        color: $text-primary;
+        display: flex;
+        align-items: center;
       }
 
       .select-color {

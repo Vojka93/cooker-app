@@ -6,24 +6,21 @@ export default function Section({
   name,
   selected,
   setSelected,
-  handleDelete,
   icon,
   color,
   editModal,
   setEditModal,
+  setDeleteModal,
 }) {
   const [inputText, setInputText] = useState(name)
   const [isShown, setIsShown] = useState(false)
   const sectionRef = useRef(null)
   const inputRef = useRef(null)
   const editIconRef = useRef(null)
+  const deleteIconRef = useRef(null)
 
   const handleSelect = (e) => {
     setSelected(e.target.closest('.section').getAttribute('value'))
-  }
-
-  const handleDeleteSection = () => {
-    handleDelete(name)
   }
 
   const handleMouseOver = () => {
@@ -82,7 +79,25 @@ export default function Section({
         {isShown && (
           <button
             className={inputText === selected ? 'selected' : ''}
-            onClick={handleDeleteSection}
+            ref={deleteIconRef}
+            onClick={() =>
+              setDeleteModal({
+                ...editModal,
+                isOpen: true,
+                name: deleteIconRef.current
+                  .closest('.left-item')
+                  .className.includes('categories')
+                  ? 'delete-category'
+                  : 'delete-recipe',
+                title: deleteIconRef.current
+                  .closest('.left-item')
+                  .className.includes('categories')
+                  ? 'Delete Category'
+                  : 'Delete Recipe',
+                input: selected,
+                ref: deleteIconRef.current,
+              })
+            }
           >
             <VscTrash />
           </button>

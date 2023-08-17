@@ -11,7 +11,7 @@
 
 @mixin button {
   height: 36px;
-  padding: 8px;
+  padding: 0;
   width: 100%;
   background-color: $bg-primary;
   color: $text-primary;
@@ -23,8 +23,11 @@
 }
 
 @mixin input {
-  color: $text-secondary;
   height: 36px;
   padding: 1rem;
   margin: 0 1rem;
+  background-color: #6b728e;
+  color: $text-primary;
+  border: none;
+  outline: none;
 }
