@@ -128,10 +128,6 @@ export default function AddModal({
     if (e.keyCode === 13) {
       handleAdd()
     }
-
-    if (e.keyCode === 27) {
-      setAddModal({ ...addModal, isOpen: false })
-    }
   }
 
   return (
@@ -152,7 +148,9 @@ export default function AddModal({
             type='text'
             ref={inputRef}
             value={addModal.input}
-            onChange={(e) => setAddModal({ ...addModal, input: e.target.value })}
+            onChange={(e) =>
+              setAddModal({ ...addModal, input: e.target.value })
+            }
             onKeyDown={handleKeyDown}
           />
         </div>

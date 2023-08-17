@@ -62,10 +62,6 @@ export default function EditModal({
     if (e.keyCode === 13) {
       handleEdit()
     }
-
-    if (e.keyCode === 27) {
-      setEditModal({ ...editModal, isOpen: false })
-    }
   }
 
   return (
