@@ -7,6 +7,7 @@ import Section from './components/section/Section'
 import { VscAdd, VscFolder } from 'react-icons/vsc'
 import Menu from './components/menu/Menu'
 import Search from './components/search/Search'
+import EditModal from './components/modal/EditModal'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -39,9 +40,13 @@ function App() {
     input: '',
   })
 
-  // category name before edit
-  const [previousCategoryName, setPreviousCategoryName] = useState('')
-  const [previousRecipeName, setPreviousRecipeName] = useState('')
+  // edit modal
+  const [editModal, setEditModal] = useState({
+    isOpen: false,
+    name: '',
+    title: '',
+    input: '',
+  })
 
   // selected category state
   const [selectedCategory, setSelectedCategory] = useState('Meat')
@@ -61,8 +66,6 @@ function App() {
           ?.recipeName
       )
     }, 0)
-
-    setSelectedRecipe('Reforma')
   }, [categories])
 
   useEffect(() => {
@@ -103,18 +106,23 @@ function App() {
     setHistoryArray(newHistoryState)
   }, [selectedRecipe])
 
-  const handleUpdateCategory = (currentName, newName) => {
+  const handleUpdateCategory = (
+    currentName,
+    newName,
+    currentColor,
+    newColor
+  ) => {
     const newCategoriesState = categories.map((obj) => {
       if (obj.name === currentName) {
-        return { ...obj, name: newName }
+        return { ...obj, name: newName, color: newColor }
       }
 
       return obj
     })
 
     const newHistoryState = historyArray.map((obj) => {
-      if (obj.categoryName === previousCategoryName) {
-        return { ...obj, categoryName: selectedCategory }
+      if (obj.categoryName === currentName) {
+        return { ...obj, categoryName: newName }
       }
 
       return obj
@@ -122,6 +130,10 @@ function App() {
 
     setCategories(newCategoriesState)
     setHistoryArray(newHistoryState)
+
+    setTimeout(() => {
+      setSelectedRecipe(selectedRecipe)
+    }, 50)
   }
 
   const handleUpdateRecipe = (currentName, newName) => {
@@ -189,9 +201,10 @@ function App() {
                     setSelected={setSelectedCategory}
                     handleUpdate={handleUpdateCategory}
                     handleDelete={handleDeleteCategory}
-                    setPreviousName={setPreviousCategoryName}
                     icon={<VscFolder />}
                     color={category.color}
+                    setModal={setModal}
+                    setEditModal={setEditModal}
                   />
                 ))}
 
@@ -219,7 +232,8 @@ function App() {
                     setSelected={setSelectedRecipe}
                     handleUpdate={handleUpdateRecipe}
                     handleDelete={handleDeleteRecipe}
-                    setPreviousName={setPreviousRecipeName}
+                    setModal={setModal}
+                    setEditModal={setEditModal}
                   />
                 ))}
 
@@ -283,6 +297,20 @@ function App() {
             setHistoryArray={setHistoryArray}
             category={category}
             setCategory={setCategory}
+          />
+        )}
+
+        {editModal.isOpen && (
+          <EditModal
+            editModal={editModal}
+            setEditModal={setEditModal}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            handleUpdateCategory={handleUpdateCategory}
+            selectedRecipe={selectedRecipe}
+            setSelectedRecipe={setSelectedRecipe}
+            handleUpdateRecipe={handleUpdateRecipe}
+            category={category}
           />
         )}
       </div>

@@ -21,6 +21,11 @@
       padding: 1rem;
       color: $text-primary;
 
+      .modal-title {
+        display: flex;
+        gap: 8px;
+      }
+
       button {
         svg {
           color: $text-primary;
@@ -35,6 +40,33 @@
     .modal-body {
       input {
         @include input;
+      }
+
+      .select-color {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 32px 0 32px;
+
+        .icon {
+          font-size: 20px;
+
+          svg {
+            display: inline-block;
+            vertical-align: text-bottom;
+          }
+        }
+
+        .colors {
+          display: flex;
+          gap: 8px;
+
+          .color {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+          }
+        }
       }
     }
 

@@ -2,19 +2,11 @@ import { useEffect, useRef } from 'react'
 // style
 import './modal.scss'
 import { VscChromeClose } from 'react-icons/vsc'
+import { folderColors } from '../../data/data'
 
 const capitalizeFirstLetter = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1)
 }
-
-const folderColors = [
-  '#fb2576',
-  '#38e54d',
-  '#d09cfa',
-  '#39b5e0',
-  '#eaeaea',
-  '#FBF46D',
-]
 
 const randomizeColor = (arr) => {
   return arr[Math.floor(Math.random() * arr.length)]

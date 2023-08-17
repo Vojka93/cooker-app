@@ -52,3 +52,12 @@ export const data = [
     ],
   },
 ]
+
+export const folderColors = [
+  '#fb2576',
+  '#38e54d',
+  '#d09cfa',
+  '#39b5e0',
+  '#eaeaea',
+  '#FBF46D',
+]

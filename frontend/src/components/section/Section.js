@@ -1,62 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
-import { VscTrash, VscEdit, VscSave } from 'react-icons/vsc'
+import { useRef, useState } from 'react'
+import { VscTrash, VscEdit } from 'react-icons/vsc'
 import './section.scss'
 
 export default function Section({
   name,
   selected,
   setSelected,
-  handleUpdate,
   handleDelete,
-  setPreviousName,
   icon,
   color,
+  editModal,
+  setEditModal,
 }) {
   const [inputText, setInputText] = useState(name)
-  const [disabled, setDisabled] = useState(true)
   const [isShown, setIsShown] = useState(false)
   const sectionRef = useRef(null)
   const inputRef = useRef(null)
-
-  useEffect(() => {
-    const id = document.addEventListener('click', handleClickOutside, true)
-
-    return () => document.removeEventListener('click', id)
-  })
+  const editIconRef = useRef(null)
 
   const handleSelect = (e) => {
     setSelected(e.target.closest('.section').getAttribute('value'))
-  }
-
-  const handleClickOutside = (e) => {
-    if (!sectionRef.current?.contains(e.target)) {
-      setDisabled(true)
-    }
-  }
-
-  const handleInputTextChange = (e) => {
-    setInputText(e.target.value)
-    setSelected(e.target.value)
-  }
-
-  const handleEdit = () => {
-    setDisabled(false)
-
-    setPreviousName(name)
-    setTimeout(() => {
-      const end = inputRef.current.value.length
-      inputRef.current.setSelectionRange(end, end)
-      inputRef.current.focus()
-      setSelected(inputText)
-    }, 0)
-  }
-
-  const handleSave = () => {
-    setDisabled(true)
-    handleUpdate(name, inputText)
-    setTimeout(() => {
-      setSelected(inputText)
-    }, 0)
   }
 
   const handleDeleteSection = () => {
@@ -69,12 +32,6 @@ export default function Section({
 
   const handleMouseOut = () => {
     setIsShown(false)
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      handleSave()
-    }
   }
 
   return (
@@ -92,32 +49,36 @@ export default function Section({
         </div>
       )}
       <div className='section-input'>
-        <input
-          type='text'
-          value={inputText}
-          onChange={handleInputTextChange}
-          disabled={disabled}
-          ref={inputRef}
-          onKeyDown={handleKeyDown}
-        />
+        <input type='text' value={inputText} disabled={true} ref={inputRef} />
       </div>
       <div className='section-buttons'>
-        {disabled && isShown && (
+        {isShown && (
           <button
             className={inputText === selected ? 'selected' : ''}
-            onClick={handleEdit}
+            ref={editIconRef}
+            onClick={() =>
+              setEditModal({
+                ...editModal,
+                isOpen: true,
+                name: editIconRef.current
+                  .closest('.left-item')
+                  .className.includes('categories')
+                  ? 'edit-category'
+                  : 'edit-recipe',
+                title: editIconRef.current
+                  .closest('.left-item')
+                  .className.includes('categories')
+                  ? 'Edit Category'
+                  : 'Edit Recipe',
+                input: selected,
+                ref: editIconRef.current,
+              })
+            }
           >
             <VscEdit />
           </button>
         )}
-        {!disabled && isShown && (
-          <button
-            className={inputText === selected ? 'selected' : ''}
-            onClick={handleSave}
-          >
-            <VscSave />
-          </button>
-        )}
+
         {isShown && (
           <button
             className={inputText === selected ? 'selected' : ''}
