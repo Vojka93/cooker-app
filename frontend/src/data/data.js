@@ -1,7 +1,7 @@
 export const data = [
   {
     name: 'Meat',
-    color: '#fb2576',
+    color: '#eaeaea',
     recipes: [
       { name: 'Steak', cookingTime: 20, difficulty: 'Beginner' },
       {
@@ -59,5 +59,5 @@ export const folderColors = [
   '#d09cfa',
   '#39b5e0',
   '#eaeaea',
-  '#FBF46D',
+  '#fbf46d',
 ]
