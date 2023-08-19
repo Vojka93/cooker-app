@@ -9,6 +9,7 @@ import Menu from './components/menu/Menu'
 import Search from './components/search/Search'
 import EditModal from './components/modal/EditModal'
 import DeleteModal from './components/modal/DeleteModal'
+import useTheme from './hooks/useTheme'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -29,6 +30,8 @@ function App() {
   const [category, setCategory] = useState({})
   const [recipes, setRecipes] = useState(categories[0]?.recipes)
   const [recipe, setRecipe] = useState({})
+
+  const { bgTertiary, bgPrimary, textPrimary } = useTheme()
 
   // menu
   const [menuItemSelected, setMenuItemSelected] = useState('Library')
@@ -194,7 +197,10 @@ function App() {
   return (
     <div className='app'>
       <div className='wrapper'>
-        <div className='left'>
+        <div
+          className='left'
+          style={{ backgroundColor: bgTertiary, color: textPrimary }}
+        >
           <Menu
             itemSelected={menuItemSelected}
             setItemSelected={setMenuItemSelected}
@@ -271,7 +277,14 @@ function App() {
             />
           )}
         </div>
-        <div className='right' style={{ display: 'flex' }}>
+        <div
+          className='right'
+          style={{
+            backgroundColor: bgPrimary,
+            color: textPrimary,
+            display: 'flex',
+          }}
+        >
           <div>
             <strong>categories</strong>
             <pre>{JSON.stringify(categories, null, 2)}</pre>

@@ -4,6 +4,7 @@ import './modal.scss'
 import { VscChromeClose, VscFolder } from 'react-icons/vsc'
 
 import { folderColors } from '../../data/data'
+import useTheme from '../../hooks/useTheme'
 
 export default function EditModal({
   editModal,
@@ -16,6 +17,8 @@ export default function EditModal({
   setSelectedRecipe,
   category,
 }) {
+  const { bgQuaternary } = useTheme()
+
   const [inputText, setInputText] = useState(
     editModal.name === 'edit-category' ? selectedCategory : selectedRecipe
   )
@@ -83,6 +86,7 @@ export default function EditModal({
             value={inputText}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
+            style={{ backgroundColor: bgQuaternary }}
           />
 
           {editModal.name === 'edit-category' && (

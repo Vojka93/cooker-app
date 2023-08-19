@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { VscTrash, VscEdit } from 'react-icons/vsc'
 import './section.scss'
+import useTheme from '../../hooks/useTheme'
 
 export default function Section({
   name,
@@ -12,6 +13,7 @@ export default function Section({
   setEditModal,
   setDeleteModal,
 }) {
+  const { textPrimary } = useTheme()
   const [inputText, setInputText] = useState(name)
   const [isShown, setIsShown] = useState(false)
   const sectionRef = useRef(null)
@@ -46,7 +48,7 @@ export default function Section({
         </div>
       )}
       <div className='section-input'>
-        <input type='text' value={inputText} disabled={true} ref={inputRef} />
+        <input type='text' value={inputText} disabled={true} ref={inputRef} style={{color: textPrimary}} />
       </div>
       <div className='section-buttons'>
         {isShown && (

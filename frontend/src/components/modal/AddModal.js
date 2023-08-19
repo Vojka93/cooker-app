@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import './modal.scss'
 import { VscChromeClose } from 'react-icons/vsc'
 import { folderColors } from '../../data/data'
+import useTheme from '../../hooks/useTheme'
 
 const capitalizeFirstLetter = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1)
@@ -27,6 +28,7 @@ export default function AddModal({
   category,
   setCategory,
 }) {
+  const { bgQuaternary, textPrimary, inputBorder, bgTertiary } = useTheme()
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -132,13 +134,13 @@ export default function AddModal({
 
   return (
     <div className='modal-wrapper'>
-      <div className='modal'>
-        <div className='modal-header'>
+      <div className='modal' style={{ backgroundColor: bgTertiary }}>
+        <div className='modal-header' style={{ color: textPrimary }}>
           <div className='modal-title'>
             <h5>{addModal.title}</h5>
           </div>
           <button onClick={() => setAddModal({ ...addModal, isOpen: false })}>
-            <VscChromeClose />
+            <VscChromeClose style={{ color: textPrimary }} />
           </button>
         </div>
 
@@ -152,6 +154,7 @@ export default function AddModal({
               setAddModal({ ...addModal, input: e.target.value })
             }
             onKeyDown={handleKeyDown}
+            style={{ backgroundColor: bgQuaternary, border: inputBorder, color: textPrimary }}
           />
         </div>
 

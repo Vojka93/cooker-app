@@ -1,4 +1,5 @@
 // style
+import useTheme from '../../hooks/useTheme'
 import './modal.scss'
 import { VscChromeClose } from 'react-icons/vsc'
 
@@ -10,6 +11,8 @@ export default function DeleteModal({
   handleDeleteCategory,
   handleDeleteRecipe,
 }) {
+  const { bgQuaternary } = useTheme()
+
   const handleDelete = () => {
     if (deleteModal.name === 'delete-category') {
       handleDeleteCategory(selectedCategory)
@@ -37,7 +40,7 @@ export default function DeleteModal({
         </div>
 
         <div className='modal-body'>
-          <div className='message'>
+          <div className='message' style={{ backgroundColor: bgQuaternary }}>
             Delete "
             {deleteModal.name === 'delete-category'
               ? selectedCategory

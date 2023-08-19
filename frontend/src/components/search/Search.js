@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './search.scss'
 import { VscFolder, VscFile } from 'react-icons/vsc'
+import useTheme from '../../hooks/useTheme'
 
 export default function Search({
   categories,
@@ -8,6 +9,7 @@ export default function Search({
   setSelectedCategory,
   setSelectedRecipe,
 }) {
+  const { bgQuaternary, textPrimary } = useTheme()
   const [input, setInput] = useState('')
   const [filtered, setFiltered] = useState([])
   const inputRef = useRef(null)
@@ -78,6 +80,7 @@ export default function Search({
           ref={inputRef}
           onChange={handleSearch}
           placeholder='🔍 Search for Categories or Recipes'
+          style={{ backgroundColor: bgQuaternary, color: textPrimary }}
         />
       </div>
 
