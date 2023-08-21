@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import { data } from './data/data'
 // components
-import Modal from './components/modal/AddModal'
-import Section from './components/section/Section'
-// style
-import { VscAdd, VscFolder } from 'react-icons/vsc'
-import { MdFolder } from 'react-icons/md'
+import Modal from './components/modal/Modal'
 import Menu from './components/menu/Menu'
 import Search from './components/search/Search'
-import EditModal from './components/modal/EditModal'
-import DeleteModal from './components/modal/DeleteModal'
+import Section from './components/section/Section'
+// style
+import { VscAdd } from 'react-icons/vsc'
+import { MdFolder } from 'react-icons/md'
+
 import useTheme from './hooks/useTheme'
 
 const createHistoryArray = (arr) => {
@@ -32,29 +31,13 @@ function App() {
   const [recipes, setRecipes] = useState(categories[0]?.recipes)
   const [recipe, setRecipe] = useState({})
 
-  const { bgTertiary, bgPrimary, textPrimary, bgSecondary } = useTheme()
+  const { textPrimary, bgSecondary, bgTertiary } = useTheme()
 
   // menu
   const [menuItemSelected, setMenuItemSelected] = useState('Library')
 
-  // add modal
-  const [addModal, setAddModal] = useState({
-    isOpen: false,
-    name: '',
-    title: '',
-    input: '',
-  })
-
-  // edit modal
-  const [editModal, setEditModal] = useState({
-    isOpen: false,
-    name: '',
-    title: '',
-    input: '',
-  })
-
-  // delete modal
-  const [deleteModal, setDeleteModal] = useState({
+  // modal
+  const [modal, setModal] = useState({
     isOpen: false,
     name: '',
     title: '',
@@ -217,20 +200,19 @@ function App() {
                     setSelected={setSelectedCategory}
                     icon={<MdFolder />}
                     color={category.color}
-                    editModal={editModal}
-                    setEditModal={setEditModal}
-                    setDeleteModal={setDeleteModal}
+                    modal={modal}
+                    setModal={setModal}
                   />
                 ))}
 
                 <div className='add-section'>
                   <button
                     onClick={() =>
-                      setAddModal({
-                        ...addModal,
+                      setModal({
                         isOpen: true,
                         name: 'add-category',
                         title: 'Add Category',
+                        input: '',
                       })
                     }
                     style={{ backgroundColor: bgSecondary, color: textPrimary }}
@@ -246,20 +228,19 @@ function App() {
                     name={recipe.name}
                     selected={selectedRecipe}
                     setSelected={setSelectedRecipe}
-                    editModal={editModal}
-                    setEditModal={setEditModal}
-                    setDeleteModal={setDeleteModal}
+                    modal={modal}
+                    setModal={setModal}
                   />
                 ))}
 
                 <div className='add-section'>
                   <button
                     onClick={() =>
-                      setAddModal({
-                        ...addModal,
+                      setModal({
                         isOpen: true,
                         name: 'add-recipe',
                         title: 'Add Recipe',
+                        input: '',
                       })
                     }
                     style={{ backgroundColor: bgSecondary, color: textPrimary }}
@@ -305,44 +286,24 @@ function App() {
             <pre>{JSON.stringify(recipe, null, 2)}</pre>
           </div>
         </div>
-        {addModal.isOpen && (
+        {modal.isOpen && (
           <Modal
-            addModal={addModal}
-            setAddModal={setAddModal}
+            modal={modal}
+            setModal={setModal}
             categories={categories}
             setCategories={setCategories}
             selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
             recipes={recipes}
             setRecipes={setRecipes}
-            setSelectedCategory={setSelectedCategory}
+            selectedRecipe={selectedRecipe}
             setSelectedRecipe={setSelectedRecipe}
             historyArray={historyArray}
             setHistoryArray={setHistoryArray}
             category={category}
             setCategory={setCategory}
-          />
-        )}
-
-        {editModal.isOpen && (
-          <EditModal
-            editModal={editModal}
-            setEditModal={setEditModal}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
             handleUpdateCategory={handleUpdateCategory}
-            selectedRecipe={selectedRecipe}
-            setSelectedRecipe={setSelectedRecipe}
             handleUpdateRecipe={handleUpdateRecipe}
-            category={category}
-          />
-        )}
-
-        {deleteModal.isOpen && (
-          <DeleteModal
-            deleteModal={deleteModal}
-            setDeleteModal={setDeleteModal}
-            selectedCategory={selectedCategory}
-            selectedRecipe={selectedRecipe}
             handleDeleteCategory={handleDeleteCategory}
             handleDeleteRecipe={handleDeleteRecipe}
           />

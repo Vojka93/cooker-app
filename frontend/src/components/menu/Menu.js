@@ -1,8 +1,9 @@
+import { useState } from 'react'
+import useTheme from '../../hooks/useTheme'
+// style
 import './menu.scss'
 import { VscSearch, VscColorMode } from 'react-icons/vsc'
 import { BiFoodMenu } from 'react-icons/bi'
-import useTheme from '../../hooks/useTheme'
-import { useState } from 'react'
 
 const darkColors = {
   textPrimary: '#eaeaea',

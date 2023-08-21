@@ -12,6 +12,7 @@
     padding-right: 8px;
 
     svg {
+      font-size: 20px;
       display: inline-block;
       vertical-align: middle;
     }
@@ -23,8 +24,8 @@
       width: 100%;
       border: none;
       background-color: transparent;
-      // color: $text-primary;
       text-decoration: none;
+      font-weight: 400;
 
       &:focus {
         outline: none;
@@ -54,7 +55,6 @@
       svg {
         display: inline-block;
         vertical-align: middle;
-        // color: $text-primary;
 
         &:hover {
           cursor: pointer;

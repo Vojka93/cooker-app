@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react'
-import { VscTrash, VscEdit } from 'react-icons/vsc'
-import './section.scss'
 import useTheme from '../../hooks/useTheme'
+// style
+import './section.scss'
+import { VscTrash, VscEdit } from 'react-icons/vsc'
 
 export default function Section({
   name,
@@ -9,9 +10,7 @@ export default function Section({
   setSelected,
   icon,
   color,
-  editModal,
-  setEditModal,
-  setDeleteModal,
+  setModal,
 }) {
   const { textPrimary } = useTheme()
   const [inputText, setInputText] = useState(name)
@@ -59,11 +58,10 @@ export default function Section({
       <div className='section-buttons'>
         {isShown && (
           <button
-            className={inputText === selected ? 'selected' : ''}
+            className='edit'
             ref={editIconRef}
             onClick={() =>
-              setEditModal({
-                ...editModal,
+              setModal({
                 isOpen: true,
                 name: editIconRef.current
                   .closest('.left-item')
@@ -75,7 +73,7 @@ export default function Section({
                   .className.includes('categories')
                   ? 'Edit Category'
                   : 'Edit Recipe',
-                input: selected,
+                input: inputText,
                 ref: editIconRef.current,
               })
             }
@@ -87,11 +85,10 @@ export default function Section({
 
         {isShown && (
           <button
-            className={inputText === selected ? 'selected' : ''}
+            className='delete'
             ref={deleteIconRef}
             onClick={() =>
-              setDeleteModal({
-                ...editModal,
+              setModal({
                 isOpen: true,
                 name: deleteIconRef.current
                   .closest('.left-item')
@@ -103,7 +100,7 @@ export default function Section({
                   .className.includes('categories')
                   ? 'Delete Category'
                   : 'Delete Recipe',
-                input: selected,
+                input: inputText,
                 ref: deleteIconRef.current,
               })
             }
