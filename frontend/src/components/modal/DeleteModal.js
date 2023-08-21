@@ -11,7 +11,8 @@ export default function DeleteModal({
   handleDeleteCategory,
   handleDeleteRecipe,
 }) {
-  const { bgQuaternary } = useTheme()
+  const { bgQuaternary, bgSecondary, textPrimary, bgTertiary, inputBorder } =
+    useTheme()
 
   const handleDelete = () => {
     if (deleteModal.name === 'delete-category') {
@@ -27,20 +28,27 @@ export default function DeleteModal({
 
   return (
     <div className='modal-wrapper'>
-      <div className='modal'>
-        <div className='modal-header'>
+      <div className='modal' style={{ backgroundColor: bgTertiary }}>
+        <div className='modal-header' style={{ color: textPrimary }}>
           <div className='modal-title'>
             <h5>{deleteModal.title}</h5>
           </div>
           <button
             onClick={() => setDeleteModal({ ...deleteModal, isOpen: false })}
           >
-            <VscChromeClose />
+            <VscChromeClose style={{ color: textPrimary }} />
           </button>
         </div>
 
         <div className='modal-body'>
-          <div className='message' style={{ backgroundColor: bgQuaternary }}>
+          <div
+            className='message'
+            style={{
+              backgroundColor: bgQuaternary,
+              border: inputBorder,
+              color: textPrimary,
+            }}
+          >
             Delete "
             {deleteModal.name === 'delete-category'
               ? selectedCategory
@@ -52,6 +60,11 @@ export default function DeleteModal({
         <div className='modal-footer'>
           <button
             onClick={() => setDeleteModal({ ...deleteModal, isOpen: false })}
+            style={{
+              backgroundColor: bgSecondary,
+              color: textPrimary,
+              border: inputBorder,
+            }}
           >
             Close
           </button>

@@ -8,6 +8,7 @@ const darkColors = {
   textPrimary: '#eaeaea',
   bgQuaternary: '#6b728e',
   bgTertiary: '#50577a',
+  bgSecondary: '#474e68',
   bgPrimary: '#404258',
   inputBorder: 'none',
 }
@@ -16,6 +17,7 @@ const lightColors = {
   textPrimary: '#000000',
   bgQuaternary: '#F3F2F1',
   bgTertiary: '#FAF9F8',
+  bgSecondary: '#F3F2F1',
   bgPrimary: '#FFFFFF',
   inputBorder: '1px solid black',
 }

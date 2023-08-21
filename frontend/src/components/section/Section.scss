@@ -23,7 +23,8 @@
       width: 100%;
       border: none;
       background-color: transparent;
-      color: $text-primary;
+      // color: $text-primary;
+      text-decoration: none;
 
       &:focus {
         outline: none;
@@ -53,7 +54,7 @@
       svg {
         display: inline-block;
         vertical-align: middle;
-        color: $text-primary;
+        // color: $text-primary;
 
         &:hover {
           cursor: pointer;

@@ -48,7 +48,13 @@ export default function Section({
         </div>
       )}
       <div className='section-input'>
-        <input type='text' value={inputText} disabled={true} ref={inputRef} style={{color: textPrimary}} />
+        <input
+          type='text'
+          value={inputText}
+          disabled={true}
+          ref={inputRef}
+          style={{ color: textPrimary }}
+        />
       </div>
       <div className='section-buttons'>
         {isShown && (
@@ -73,6 +79,7 @@ export default function Section({
                 ref: editIconRef.current,
               })
             }
+            style={{ color: textPrimary }}
           >
             <VscEdit />
           </button>
@@ -100,6 +107,7 @@ export default function Section({
                 ref: deleteIconRef.current,
               })
             }
+            style={{ color: textPrimary }}
           >
             <VscTrash />
           </button>

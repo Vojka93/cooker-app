@@ -28,7 +28,8 @@ export default function AddModal({
   category,
   setCategory,
 }) {
-  const { bgQuaternary, textPrimary, inputBorder, bgTertiary } = useTheme()
+  const { bgQuaternary, textPrimary, inputBorder, bgTertiary, bgSecondary } =
+    useTheme()
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -154,12 +155,23 @@ export default function AddModal({
               setAddModal({ ...addModal, input: e.target.value })
             }
             onKeyDown={handleKeyDown}
-            style={{ backgroundColor: bgQuaternary, border: inputBorder, color: textPrimary }}
+            style={{
+              backgroundColor: bgQuaternary,
+              border: inputBorder,
+              color: textPrimary,
+            }}
           />
         </div>
 
         <div className='modal-footer'>
-          <button onClick={() => setAddModal({ ...addModal, isOpen: false })}>
+          <button
+            onClick={() => setAddModal({ ...addModal, isOpen: false })}
+            style={{
+              backgroundColor: bgSecondary,
+              color: textPrimary,
+              border: inputBorder,
+            }}
+          >
             Close
           </button>
           <button onClick={handleAdd}>Add</button>

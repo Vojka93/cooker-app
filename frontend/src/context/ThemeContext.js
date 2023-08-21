@@ -24,7 +24,7 @@ export function ThemeProvider({ children }) {
     bgSecondary: '#474e68',
     bgTertiary: '#50577a',
     bgQuaternary: '#6b728e',
-    inputBorder: 'none'
+    inputBorder: 'none',
   })
 
   const setDark = (colors) => {

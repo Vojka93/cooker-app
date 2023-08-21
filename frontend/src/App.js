@@ -5,6 +5,7 @@ import Modal from './components/modal/AddModal'
 import Section from './components/section/Section'
 // style
 import { VscAdd, VscFolder } from 'react-icons/vsc'
+import { MdFolder } from 'react-icons/md'
 import Menu from './components/menu/Menu'
 import Search from './components/search/Search'
 import EditModal from './components/modal/EditModal'
@@ -31,7 +32,7 @@ function App() {
   const [recipes, setRecipes] = useState(categories[0]?.recipes)
   const [recipe, setRecipe] = useState({})
 
-  const { bgTertiary, bgPrimary, textPrimary } = useTheme()
+  const { bgTertiary, bgPrimary, textPrimary, bgSecondary } = useTheme()
 
   // menu
   const [menuItemSelected, setMenuItemSelected] = useState('Library')
@@ -214,7 +215,7 @@ function App() {
                     name={category.name}
                     selected={selectedCategory}
                     setSelected={setSelectedCategory}
-                    icon={<VscFolder />}
+                    icon={<MdFolder />}
                     color={category.color}
                     editModal={editModal}
                     setEditModal={setEditModal}
@@ -232,6 +233,7 @@ function App() {
                         title: 'Add Category',
                       })
                     }
+                    style={{ backgroundColor: bgSecondary, color: textPrimary }}
                   >
                     <VscAdd /> Add Catrgory
                   </button>
@@ -260,6 +262,7 @@ function App() {
                         title: 'Add Recipe',
                       })
                     }
+                    style={{ backgroundColor: bgSecondary, color: textPrimary }}
                   >
                     <VscAdd /> Add Recipe
                   </button>
@@ -280,7 +283,7 @@ function App() {
         <div
           className='right'
           style={{
-            backgroundColor: bgPrimary,
+            backgroundColor: bgSecondary,
             color: textPrimary,
             display: 'flex',
           }}

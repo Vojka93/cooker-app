@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 // style
 import './modal.scss'
-import { VscChromeClose, VscFolder } from 'react-icons/vsc'
+import { VscChromeClose } from 'react-icons/vsc'
+import { MdFolder } from 'react-icons/md'
 
 import { folderColors } from '../../data/data'
 import useTheme from '../../hooks/useTheme'
@@ -17,7 +18,8 @@ export default function EditModal({
   setSelectedRecipe,
   category,
 }) {
-  const { bgQuaternary } = useTheme()
+  const { bgQuaternary, textPrimary, inputBorder, bgTertiary, bgSecondary } =
+    useTheme()
 
   const [inputText, setInputText] = useState(
     editModal.name === 'edit-category' ? selectedCategory : selectedRecipe
@@ -69,13 +71,13 @@ export default function EditModal({
 
   return (
     <div className='modal-wrapper'>
-      <div className='modal'>
-        <div className='modal-header'>
+      <div className='modal' style={{ backgroundColor: bgTertiary }}>
+        <div className='modal-header' style={{ color: textPrimary }}>
           <div className='modal-title'>
             <h5>{editModal.title}</h5>
           </div>
           <button onClick={() => setEditModal({ ...editModal, isOpen: false })}>
-            <VscChromeClose />
+            <VscChromeClose style={{ color: textPrimary }} />
           </button>
         </div>
 
@@ -86,13 +88,17 @@ export default function EditModal({
             value={inputText}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            style={{ backgroundColor: bgQuaternary }}
+            style={{
+              backgroundColor: bgQuaternary,
+              border: inputBorder,
+              color: textPrimary,
+            }}
           />
 
           {editModal.name === 'edit-category' && (
             <div className='select-color'>
               <div className='icon' style={{ color: folderColor }}>
-                <VscFolder />
+                <MdFolder />
               </div>
               <div className='colors'>
                 {folderColors.map((color) => (
@@ -112,7 +118,14 @@ export default function EditModal({
         </div>
 
         <div className='modal-footer'>
-          <button onClick={() => setEditModal({ ...editModal, isOpen: false })}>
+          <button
+            onClick={() => setEditModal({ ...editModal, isOpen: false })}
+            style={{
+              backgroundColor: bgSecondary,
+              color: textPrimary,
+              border: inputBorder,
+            }}
+          >
             Close
           </button>
           <button onClick={handleEdit}>Save</button>

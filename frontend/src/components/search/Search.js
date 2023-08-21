@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './search.scss'
 import { VscFolder, VscFile } from 'react-icons/vsc'
+import { MdFolder } from "react-icons/md";
 import useTheme from '../../hooks/useTheme'
 
 export default function Search({
@@ -101,7 +102,7 @@ export default function Search({
                     className='filtered-item-left'
                     style={{ color: element.color }}
                   >
-                    <VscFolder />
+                    <MdFolder />
                   </div>
                   <div className='filtered-item-right'>
                     <div className='right-title'>{element.name}</div>
