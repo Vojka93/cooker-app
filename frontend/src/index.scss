@@ -24,6 +24,8 @@ button {
   grid-template-columns: 1.2fr 8fr;
 
   .left-item {
+    position: relative;
+    height: 100vh;
     border-right: 1px solid rgb(0, 0, 0);
   }
 
@@ -34,6 +36,10 @@ button {
 }
 
 .add-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
   button {
     @include button;
 

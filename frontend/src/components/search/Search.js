@@ -71,7 +71,7 @@ export default function Search({
     <div className='search'>
       {input.length < 3 ? (
         <div className='message'>
-          Please enter at least 3 chars to search...
+          Please enter at least 3 chars...
         </div>
       ) : (
         <div className='message'>Results for: {input}</div>
