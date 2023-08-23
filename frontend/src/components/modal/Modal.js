@@ -161,7 +161,6 @@ export default function Modal({
   }
 
   const handleEdit = () => {
-    console.log(time, difficulty)
     if (modal.name === 'edit-category') {
       handleUpdateCategory(
         selectedCategory,
