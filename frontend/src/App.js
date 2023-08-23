@@ -132,10 +132,15 @@ function App() {
     }, 50)
   }
 
-  const handleUpdateRecipe = (currentName, newName) => {
+  const handleUpdateRecipe = (currentName, newName, newDifficulty, newTime) => {
     const newRecipesState = category.recipes.map((obj) => {
       if (obj.name === currentName) {
-        return { ...obj, name: newName }
+        return {
+          ...obj,
+          name: newName,
+          difficulty: newDifficulty,
+          time: newTime,
+        }
       }
 
       return obj
@@ -230,6 +235,7 @@ function App() {
                     setSelected={setSelectedRecipe}
                     modal={modal}
                     setModal={setModal}
+                    recipe={recipe}
                   />
                 ))}
 
@@ -294,6 +300,7 @@ function App() {
             setCategories={setCategories}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
+            recipe={recipe}
             recipes={recipes}
             setRecipes={setRecipes}
             selectedRecipe={selectedRecipe}

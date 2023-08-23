@@ -37,6 +37,8 @@ export default function Modal({
   const [inputText, setInputText] = useState(
     modal.name === 'edit-category' ? selectedCategory : selectedRecipe
   )
+  const [time, setTime] = useState(modal.time)
+  const [difficulty, setDifficulty] = useState(modal.difficulty)
   const [folderColor, setFolderColor] = useState('')
   const { bgQuaternary, textPrimary, inputBorder, bgTertiary, bgSecondary } =
     useTheme()
@@ -53,11 +55,21 @@ export default function Modal({
     setInputText(e.target.value)
   }
 
+  const handleDifficultyChange = (e) => {
+    setDifficulty(e.target.value)
+    setModal({ ...modal, difficulty: difficulty })
+  }
+
+  const handleTimeChange = (e) => {
+    setTime(e.target.value)
+    setModal({ ...modal, time: time })
+  }
+
   const handleAdd = () => {
     const capitalizedInput = capitalizeFirstLetter(modal.input)
 
     if (modal.input.length === 0) {
-      alert("Input field can't be empty")
+      alert("Input field can't be empty.")
       inputRef.current.focus()
       return
     }
@@ -68,7 +80,7 @@ export default function Modal({
       )
 
       if (doesCategoryExist !== undefined) {
-        alert('Category alredy exists')
+        alert('Category alredy exists.')
         inputRef.current.focus()
         return
       } else {
@@ -90,12 +102,17 @@ export default function Modal({
     }
 
     if (inputRef.current.name === 'add-recipe') {
+      if (time === undefined || difficulty === undefined) {
+        alert('All fields have to be filled.')
+        inputRef.current.focus()
+        return
+      }
       const doesRecipeExist = recipes.find(
         (recipe) => recipe.name === capitalizedInput
       )
 
       if (doesRecipeExist !== undefined) {
-        alert('Recipe alredy exists')
+        alert('Recipe alredy exists.')
         inputRef.current.focus()
         return
       } else {
@@ -107,8 +124,8 @@ export default function Modal({
                 ...obj.recipes,
                 {
                   name: capitalizedInput,
-                  cookingTime: null,
-                  difficulty: '',
+                  time: time,
+                  difficulty: difficulty,
                 },
               ],
             }
@@ -144,6 +161,7 @@ export default function Modal({
   }
 
   const handleEdit = () => {
+    console.log(time, difficulty)
     if (modal.name === 'edit-category') {
       handleUpdateCategory(
         selectedCategory,
@@ -159,7 +177,18 @@ export default function Modal({
     }
 
     if (modal.name === 'edit-recipe') {
-      handleUpdateRecipe(selectedRecipe, modal.input)
+      if (
+        time === undefined ||
+        difficulty === undefined ||
+        time.length === 0 ||
+        difficulty.length === 0
+      ) {
+        alert('All fields have to be filled.')
+        inputRef.current.focus()
+        return
+      }
+
+      handleUpdateRecipe(selectedRecipe, modal.input, difficulty, time)
 
       setTimeout(() => {
         setSelectedRecipe(modal.input)
@@ -254,6 +283,44 @@ export default function Modal({
                     }
                   />
                 ))}
+              </div>
+            </div>
+          )}
+
+          {(modal.name === 'add-recipe' || modal.name === 'edit-recipe') && (
+            <div className='additional-info'>
+              <div className='time'>
+                <p style={{ color: textPrimary }}>Time (minutes)</p>
+                <input
+                  name='time'
+                  type='number'
+                  value={time}
+                  onChange={handleTimeChange}
+                  style={{
+                    backgroundColor: bgQuaternary,
+                    border: inputBorder,
+                    color: textPrimary,
+                  }}
+                />
+              </div>
+              <div className='difficulty'>
+                <p style={{ color: textPrimary }}>Difficulty</p>
+                <select
+                  name='difficulty'
+                  value={difficulty}
+                  onChange={handleDifficultyChange}
+                  style={{
+                    backgroundColor: bgQuaternary,
+                    border: inputBorder,
+                    color: textPrimary,
+                  }}
+                >
+                  <option value=''>Select a Difficulty:</option>
+                  <option value='Beginner'>Beginner</option>
+                  <option value='Intermediate'>Intermediate</option>
+                  <option value='Advanced'>Advanced</option>
+                  <option value='Expert'>Expert</option>
+                </select>
               </div>
             </div>
           )}

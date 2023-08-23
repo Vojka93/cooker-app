@@ -3,52 +3,52 @@ export const data = [
     name: 'Meat',
     color: '#eaeaea',
     recipes: [
-      { name: 'Steak', cookingTime: 20, difficulty: 'Beginner' },
+      { name: 'Steak', time: 20, difficulty: 'Beginner' },
       {
         name: 'Chicken Breast',
-        cookingTime: 30,
+        time: 30,
         difficulty: 'Intermediate',
       },
-      { name: 'Frog Legs', cookingTime: 60, difficulty: 'Expert' },
+      { name: 'Frog Legs', time: 60, difficulty: 'Expert' },
     ],
   },
   {
     name: 'Fish',
     color: '#38e54d',
     recipes: [
-      { name: 'Fish Soup', cookingTime: 20, difficulty: 'Beginner' },
+      { name: 'Fish Soup', time: 20, difficulty: 'Beginner' },
       {
         name: 'Salmon',
-        cookingTime: 30,
+        time: 30,
         difficulty: 'Intermediate',
       },
-      { name: 'Tuna', cookingTime: 60, difficulty: 'Beginner' },
+      { name: 'Tuna', time: 60, difficulty: 'Beginner' },
     ],
   },
   {
     name: 'Salad',
     color: '#d09cfa',
     recipes: [
-      { name: 'Greec Salad', cookingTime: 20, difficulty: 'Beginner' },
+      { name: 'Greec Salad', time: 20, difficulty: 'Beginner' },
       {
         name: 'Green Salad',
-        cookingTime: 30,
+        time: 30,
         difficulty: 'Intermediate',
       },
-      { name: 'Chickpeas Salad', cookingTime: 60, difficulty: 'Beginner' },
+      { name: 'Chickpeas Salad', time: 60, difficulty: 'Beginner' },
     ],
   },
   {
     name: 'Cake',
     color: '#39b5e0',
     recipes: [
-      { name: 'Reforma', cookingTime: 20, difficulty: 'Advanced' },
+      { name: 'Reforma', time: 20, difficulty: 'Advanced' },
       {
         name: 'Plazma Cake',
-        cookingTime: 30,
+        time: 30,
         difficulty: 'Intermediate',
       },
-      { name: 'Tiramisù', cookingTime: 60, difficulty: 'Beginner' },
+      { name: 'Tiramisù', time: 60, difficulty: 'Beginner' },
     ],
   },
 ]

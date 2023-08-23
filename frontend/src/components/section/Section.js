@@ -10,6 +10,7 @@ export default function Section({
   setSelected,
   icon,
   color,
+  recipe,
   setModal,
 }) {
   const { textPrimary } = useTheme()
@@ -74,7 +75,8 @@ export default function Section({
                   ? 'Edit Category'
                   : 'Edit Recipe',
                 input: inputText,
-                ref: editIconRef.current,
+                time: recipe?.time,
+                difficulty: recipe?.difficulty,
               })
             }
             style={{ color: textPrimary }}
