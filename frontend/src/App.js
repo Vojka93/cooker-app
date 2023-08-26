@@ -10,6 +10,7 @@ import { VscAdd } from 'react-icons/vsc'
 import { MdFolder } from 'react-icons/md'
 
 import useTheme from './hooks/useTheme'
+import Recipe from './components/recipe/Recipe'
 
 const createHistoryArray = (arr) => {
   let history = []
@@ -275,22 +276,7 @@ function App() {
             display: 'flex',
           }}
         >
-          <div>
-            <strong>categories</strong>
-            <pre>{JSON.stringify(categories, null, 2)}</pre>
-          </div>
-          <div>
-            <strong>category</strong>
-            <pre>{JSON.stringify(category, null, 2)}</pre>
-          </div>
-          <div>
-            <strong>recipes</strong>
-            <pre>{JSON.stringify(recipes, null, 2)}</pre>
-          </div>
-          <div>
-            <strong>recipe</strong>
-            <pre>{JSON.stringify(recipe, null, 2)}</pre>
-          </div>
+          <Recipe recipe={recipe} setRecipe={setRecipe} />
         </div>
         {modal.isOpen && (
           <Modal

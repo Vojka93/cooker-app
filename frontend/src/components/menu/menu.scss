@@ -1,13 +1,12 @@
 @import './../../style/variables.scss';
 
 .menu {
-  // background-color: $bg-quaternary;
   border-right: 1px solid rgb(0, 0, 0);
 
   nav {
+    height: 100vh;
+
     ul {
-      position: relative;
-      height: 100vh;
       list-style-type: none;
 
       li {
@@ -25,12 +24,6 @@
         svg {
           font-size: 1rem;
           height: 36px;
-        }
-
-        &:last-child {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
         }
       }
     }

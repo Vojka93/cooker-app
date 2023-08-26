@@ -3,7 +3,12 @@ export const data = [
     name: 'Meat',
     color: '#eaeaea',
     recipes: [
-      { name: 'Steak', time: 20, difficulty: 'Beginner' },
+      {
+        name: 'Steak',
+        time: 20,
+        difficulty: 'Beginner',
+        ingredients: ['butter', 'eggs', 'sugar'],
+      },
       {
         name: 'Chicken Breast',
         time: 30,
@@ -42,7 +47,12 @@ export const data = [
     name: 'Cake',
     color: '#39b5e0',
     recipes: [
-      { name: 'Reforma', time: 20, difficulty: 'Advanced' },
+      {
+        name: 'Reforma',
+        time: 20,
+        difficulty: 'Advanced',
+        ingredients: ['butter', 'eggs', 'sugar'],
+      },
       {
         name: 'Plazma Cake',
         time: 30,
