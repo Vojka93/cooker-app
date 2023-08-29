@@ -276,7 +276,13 @@ function App() {
             display: 'flex',
           }}
         >
-          <Recipe recipe={recipe} setRecipe={setRecipe} />
+          <Recipe
+            recipe={recipe}
+            recipes={recipes}
+            category={category}
+            categories={categories}
+            setCategories={setCategories}
+          />
         </div>
         {modal.isOpen && (
           <Modal

@@ -126,6 +126,9 @@ export default function Modal({
                   name: capitalizedInput,
                   time: time,
                   difficulty: difficulty,
+                  ingredients: [],
+                  instructions: '',
+                  notes: '',
                 },
               ],
             }
