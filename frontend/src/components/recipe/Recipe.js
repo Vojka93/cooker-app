@@ -160,29 +160,21 @@ export default function Recipe({
 
   return (
     <div className='recipe'>
-      <div
-        className='first-item'
-        style={{
-          padding: '20px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
-      >
-        <div className='recipe-name'>{recipe?.name}</div>
+      <section>
+        <h2>{recipe?.name}</h2>
         <div className='recipe-body'>
-          <div className='recipe-time'>
+          <div>
             <IoStopwatchOutline />
             {recipe?.time} (min)
           </div>
-          <div className='recipe-difficulty'>
+          <div>
             <IoRestaurantOutline /> {recipe?.difficulty}
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className='recipe-item'>
-        <p className='title'>INSTRUCTIONS</p>
+      <section>
+        <h4>INSTRUCTIONS</h4>
         {!editInstructions && <p className='body'>{recipe?.instructions}</p>}
         {editInstructions && (
           <>
@@ -207,14 +199,14 @@ export default function Recipe({
             Edit Instructions
           </button>
         )}
-      </div>
-      <div className='recipe-item'>
-        <p className='title'>INGREDIENTS</p>
+      </section>
+      <section>
+        <h4>INGREDIENTS</h4>
 
         <div className='ingredients'>
           {recipe?.ingredients?.map((x, i) => (
             <div key={i} className='ingredient'>
-              <span>{x}</span>
+              {x}
               <button
                 style={{ color: textPrimary }}
                 onClick={handleDeleteIngredient}
@@ -241,9 +233,9 @@ export default function Recipe({
             Add Ingredient
           </button>
         </div>
-      </div>
-      <div className='recipe-item'>
-        <p className='title'>NOTES</p>
+      </section>
+      <section>
+        <h4>NOTES</h4>
         {!editNotes && <p className='body'>{recipe?.notes}</p>}
         {editNotes && (
           <>
@@ -268,7 +260,7 @@ export default function Recipe({
             Edit Notes
           </button>
         )}
-      </div>
+      </section>
     </div>
   )
 }

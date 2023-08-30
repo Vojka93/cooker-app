@@ -8,34 +8,41 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 
-  .recipe-name {
-    font-size: 2rem;
-    padding: 1rem;
-  }
-
-  .recipe-body {
+  section:first-child {
+    padding: 20px;
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
 
-    div {
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    h2 {
+      font-size: 2rem;
       padding: 1rem;
+    }
 
-      svg {
-        font-size: 2rem;
+    .recipe-body {
+      display: flex;
+      gap: 2rem;
+
+      div {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+
+        svg {
+          font-size: 2rem;
+        }
       }
     }
   }
 
-  .recipe-item {
+  section {
     padding: 20px;
     display: flex;
     flex-direction: column;
 
-    .title {
+    h4 {
       padding: 1rem;
     }
 
@@ -75,6 +82,7 @@
       flex-direction: row;
       gap: 1rem;
       margin-top: auto;
+
       input {
         @include input;
         margin: 0;
